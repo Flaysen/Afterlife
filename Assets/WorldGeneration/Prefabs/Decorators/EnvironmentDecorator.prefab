@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6306222407046525074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5296077638289045325}
+  - component: {fileID: 1740080351396671140}
+  m_Layer: 0
+  m_Name: EnvironmentDecorator
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5296077638289045325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306222407046525074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1740080351396671140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306222407046525074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81e9f1d5b46d2e43a44e6ade1cecb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _decoratorMeshes:
+  - {fileID: -927199367670048503, guid: 68cc79b0f2e3d62438cdf06bb0609e9e, type: 3}
+  - {fileID: -927199367670048503, guid: 4f1599edf0a57744bbcf999705c76b01, type: 3}
+  - {fileID: -927199367670048503, guid: 1f605a3ab236a7743a9974d68e8c7591, type: 3}
+  - {fileID: -927199367670048503, guid: 0b8a89fd73d31d444ba6e2ea11f526df, type: 3}
+  - {fileID: -927199367670048503, guid: 3d792df49656e3746ade99f11929ea4f, type: 3}
+  - {fileID: -927199367670048503, guid: 80ee355d4a5d147488abf7619e7efde5, type: 3}
+  _materials: []
+  _scaleDeviation: 0.1
+  _rotationDeviation: 0.1
+  _fixedRoation: 0
+  _fixedPosition: 0
