@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace LevelGeneration
+{
 public class DecoratorSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject [] _decoratorMeshes;
@@ -68,3 +70,5 @@ public class DecoratorSpawner : MonoBehaviour
         }
     }
 }
+} 
+
