@@ -6,8 +6,9 @@ namespace LevelGeneration
 {
     public class MazeGenerator : MonoBehaviour
     {
-        [SerializeField] private Vector2 _mazeSize = new Vector2(4,4);
-        [SerializeField] private int _roomsCount = 20;
+        [SerializeField] private Vector2 _mazeSize;
+        [SerializeField] private int _roomsCount;
+        [SerializeField] private GameObject _roomSpawner;
         [SerializeField] private GameObject _entryRoom;
 
         private List<Vector2> _takenPositions = new List<Vector2>();
@@ -16,13 +17,14 @@ namespace LevelGeneration
 
         private void Start()
         {
+
             if (_roomsCount >= (_mazeSize.x * 2) * (_mazeSize.y * 2))
             { 
-                _roomsCount = (int)(_mazeSize.x * 2 * _mazeSize.y * 2);
+                _roomsCount = Mathf.RoundToInt((_mazeSize.x * 2) * (_mazeSize.y * 2));
             }  
 
-            _gridX = (int)(_mazeSize.x);
-            _gridY = (int)(_mazeSize.y);
+            _gridX = Mathf.RoundToInt(_mazeSize.x);
+            _gridY = Mathf.RoundToInt(_mazeSize.y);
 
             GenerateRooms();
             SetRoomDoors();
@@ -31,7 +33,7 @@ namespace LevelGeneration
 
         private void GenerateRooms() 
         {
-            _rooms = new Room[_gridX * 2, _gridY * 2];
+            _rooms = new Room[_gridX * 2, _gridY * 2];;
 
             _rooms[_gridX, _gridY] = new Room(Vector2.zero, 1);
 
@@ -59,7 +61,7 @@ namespace LevelGeneration
                         j++;
                     } while (GetNumberOfNeighbors(checkPos, _takenPositions) > 1 && j < 100);
                 }
-                _rooms[(int)checkPos.x + _gridX, (int)checkPos.y + _gridY] = new Room(checkPos, 0);
+                 _rooms[(int)checkPos.x + _gridX, (int)checkPos.y + _gridY] = new Room(checkPos, 0);
                 _takenPositions.Insert(0, checkPos);
             }      
         }
@@ -67,35 +69,37 @@ namespace LevelGeneration
         private Vector2 NewPosition(bool lookForOneNeighbor)
         {
             int x = 0, y = 0;
+            int i = 0;
             Vector2 checkingPos = Vector2.zero;
 
             do
             {
-                int index = 0;
-                int attempts = 0;
+                int attempts = 0;  
 
-                int i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
-                do
+                if(lookForOneNeighbor)
                 {
-                    i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
-                    attempts++;
-                } while (GetNumberOfNeighbors(_takenPositions[index], _takenPositions) > 1 && attempts < 100 && lookForOneNeighbor);
-
+                    do
+                    {
+                        i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
+                        attempts++;
+                    } while (GetNumberOfNeighbors(_takenPositions[i], _takenPositions) > 1 && attempts < 100);
+                }
+                else i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
+               
                 x = (int)_takenPositions[i].x;
                 y = (int)_takenPositions[i].y;
 
                 checkingPos = (Random.value < 0.5f) ?
 
-                    (Random.value < 0.5) ? new Vector2(x, y + 1) : new Vector2(x, y - 1) :
+                     (Random.value < 0.5f) ? new Vector2(x, y + 1) : new Vector2(x, y - 1) :
 
-                    (Random.value < 0.5) ? new Vector2(x + 1, y) : new Vector2(x - 1, y);
+                     (Random.value < 0.5f) ? new Vector2(x + 1, y) : new Vector2(x - 1, y);
 
-            }
-            while (_takenPositions.Contains(checkingPos) || x >= _gridX || x < -_gridX || y >= -_gridY || y < -_gridY);
-            
+            } while (_takenPositions.Contains(checkingPos) || checkingPos.x >= _gridX || checkingPos.x < -_gridX || checkingPos.y >= _gridY || checkingPos.y < -_gridY);
+           
             return checkingPos;
-        } 
-
+        }
+ 
         private int GetNumberOfNeighbors(Vector2 checkingPos, List<Vector2> usedPositions)
         {
             int ret = 0;
@@ -123,11 +127,11 @@ namespace LevelGeneration
 
                     _rooms[x, y].DoorBot = (y - 1 < 0) ? false : _rooms[x, y - 1] != null;
 
-                    _rooms[x, y].DoorBot = (y + 1 >= _gridY * 2) ? false : _rooms[x, y + 1] != null;
+                    _rooms[x, y].DoorTop = (y + 1 >= _gridY * 2) ? false : _rooms[x, y + 1] != null;
 
-                    _rooms[x, y].DoorBot = (x - 1 < 0) ? false : _rooms[x - 1, y] != null;
+                    _rooms[x, y].DoorLeft = (x - 1 < 0) ? false : _rooms[x - 1, y] != null;
 
-                    _rooms[x, y].DoorBot = (x + 1 >= _gridX * 2) ? false : _rooms[x + 1, y] != null;
+                    _rooms[x, y].DoorRight = (x + 1 >= _gridX * 2) ? false : _rooms[x + 1, y] != null;
                 }   
             }
         }
@@ -140,17 +144,16 @@ namespace LevelGeneration
                 {
                     continue; 
                 }
-                Vector2 drawPos = room.GridPosition;
-                drawPos.x *= 16;
-                drawPos.y *= 16;
+                Vector2 spawnPosition = room.GridPosition;
+                spawnPosition.x *= 32;
+                spawnPosition.y *= 33;
         
-                MazeRoomSelector mapper = Object.Instantiate(_entryRoom, new Vector3(drawPos.x, 0, drawPos.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
-                mapper.RoomType = room.RoomType;
-                mapper.Up = room.DoorTop;
-                mapper.Down = room.DoorBot;
-                mapper.Right = room.DoorRight;
-                mapper.Left = room.DoorLeft;
-                //mapper.gameObject.transform.parent = mapRoot;
+                MazeRoomSelector roomSelector = Object.Instantiate(_roomSpawner, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
+                //mapper.RoomType = room.RoomType;
+                roomSelector.Up = room.DoorTop;
+                roomSelector.Down = room.DoorBot;
+                roomSelector.Right = room.DoorRight;
+                roomSelector.Left = room.DoorLeft;
             }
         }
     }
