@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Turret
   - Enemy
+  - CameraRig
   layers:
   - Default
   - TransparentFX

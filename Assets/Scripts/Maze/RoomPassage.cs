@@ -9,7 +9,7 @@ public class RoomPassage : MonoBehaviour
 
     private void Awake()
     {
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        _mainCamera = GameObject.FindGameObjectWithTag("CameraRig");
         _tpDistance = 22;
     }
 
@@ -20,7 +20,6 @@ public class RoomPassage : MonoBehaviour
         if(player)
         {
             Vector3 tpVector = this.transform.forward * _tpDistance;
-            Debug.Log(tpVector);
             other.transform.position += tpVector;
             _mainCamera.transform.position += tpVector;
         }

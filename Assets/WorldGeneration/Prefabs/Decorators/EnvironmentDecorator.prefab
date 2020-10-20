@@ -50,6 +50,12 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: 0b8a89fd73d31d444ba6e2ea11f526df, type: 3}
   - {fileID: -927199367670048503, guid: 3d792df49656e3746ade99f11929ea4f, type: 3}
   - {fileID: -927199367670048503, guid: 80ee355d4a5d147488abf7619e7efde5, type: 3}
+  - {fileID: -927199367670048503, guid: 9fa23093dce9acf4183f80c752d408f1, type: 3}
+  - {fileID: -927199367670048503, guid: 6d1c6f405e1d06c45a564391e582e8b3, type: 3}
+  - {fileID: -927199367670048503, guid: fec20d0cd7d242a4ab66bb95461d3b42, type: 3}
+  - {fileID: -927199367670048503, guid: bc9b1ebe7fe5fff449ab0defcc6b7ad3, type: 3}
+  - {fileID: -927199367670048503, guid: f6e3bf454e630d346a35aa9d229e24b2, type: 3}
+  - {fileID: -927199367670048503, guid: 7a5367e6b0bd44f48bae1aa8b9d5bcab, type: 3}
   _materials: []
   _scaleDeviation: 0.1
   _rotationDeviation: 0.1
