@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class Minimap : MonoBehaviour
 {
+    Dictionary<RoomController, Image> _roomsDictionary = new Dictionary<RoomController, Image>();
     private MazeGenerator _mazeGenerator;
+    private Vector3 _actualPosition;
 
     [SerializeField] private Sprite _mapSprite;
     [SerializeField] private Image _image;
@@ -15,31 +17,64 @@ public class Minimap : MonoBehaviour
     {
         _mazeGenerator = FindObjectOfType<MazeGenerator>();
 
-        _mazeGenerator.OnMazeGenerated += DrawMap;
-
-        _image = GetComponent<Image>();
-
-        //RoomController.OnRoomEntered += MoveMap;
+        _actualPosition = transform.localPosition;
     }
 
-    private void DrawMap(List<Vector2> roomPositions)
+    public void RegisterRoom(RoomController roomController)
     {
-        Debug.Log("MAP DRAWED");
+        
+        Vector2 mapPosition = new Vector2(transform.position.x, transform.position.y);
+        Vector2 roomPosition = new Vector2(roomController.transform.position.x, roomController.transform.position.z) * 2;
 
-        _image.enabled = true;
-        _image.sprite = _mapSprite;
+        Image image = Instantiate(_image, Vector3.zero, Quaternion.identity, transform);
 
-        foreach(Vector2 position in roomPositions)
-        {
-            Vector2 mapPosition = new Vector2(transform.position.x, transform.position.y);
-            Image imgage = Instantiate(_image, mapPosition + position * 28, Quaternion.identity);
-            imgage.transform.parent = transform.parent; 
+        image.transform.localPosition = roomPosition;
+
+        _roomsDictionary.Add(roomController, image);
+
+        roomController.OnRoomEntered += ChangeRoomColor; 
+
+        //roomController.OnRoomCleared += ClearColor;  
+    }
+
+    private void ChangeRoomColor(RoomController roomController)
+    {
+        Vector2 newPosition = Vector2.zero;
+
+        foreach(KeyValuePair<RoomController, Image> kvp in _roomsDictionary)
+        {        
+            if(kvp.Key == roomController)
+            {
+                newPosition = new Vector2(kvp.Key.transform.position.x, kvp.Key.transform.position.z) * 2f;
+                kvp.Value.color = Color.red;
+            }
+            else kvp.Value.color = Color.white;
         }
-        
+
+        Debug.Log("New:" + newPosition + " Actual:" + _actualPosition);
+
+        MoveMap(roomController, newPosition);
+
+        _actualPosition = newPosition;
     }
 
-    private void MoveMap(RoomController roomController)
+    private void ClearColor(RoomController roomController)
     {
-        
+
+        foreach(KeyValuePair<RoomController, Image> kvp in _roomsDictionary)
+        {        
+            if(kvp.Key == roomController)
+            {
+                kvp.Value.color = Color.green;
+            }
+        }
+    }
+
+    private void MoveMap(RoomController roomController, Vector3 newPosition)
+    {
+        foreach(KeyValuePair<RoomController, Image> kvp in _roomsDictionary)
+        {          
+            kvp.Value.transform.localPosition += _actualPosition - newPosition;                      
+        }
     }
 }

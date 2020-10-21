@@ -8,14 +8,13 @@ namespace LevelGeneration
     {
         [SerializeField] private Vector2 _mazeSize;
         [SerializeField] private int _roomsCount;
-        [SerializeField] private GameObject _roomSpawner;
+        [SerializeField] private MazeRoomSelector _mazeRoomSelector;
         [SerializeField] private GameObject _entryRoom;
 
         private List<Vector2> _takenPositions = new List<Vector2>();
         private Room[,] _rooms; 
         private int _gridX, _gridY;  
         public event Action<List<Vector2>> OnMazeGenerated;
-
         private void Start()
         {
 
@@ -149,9 +148,9 @@ namespace LevelGeneration
                 }
                 Vector2 spawnPosition = room.GridPosition;
                 spawnPosition.x *= 32;
-                spawnPosition.y *= 33;
+                spawnPosition.y *= 32;
         
-                MazeRoomSelector roomSelector = Instantiate(_roomSpawner, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
+                MazeRoomSelector roomSelector = Instantiate(_mazeRoomSelector, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
                 //mapper.RoomType = room.RoomType;
                 roomSelector.Up = room.DoorTop;
                 roomSelector.Down = room.DoorBot;

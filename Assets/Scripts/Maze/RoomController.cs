@@ -12,6 +12,8 @@ public class RoomController : MonoBehaviour
 
     public List<EnemyHealthBehaviour> enemies = new List<EnemyHealthBehaviour>();
 
+    private Minimap _minimap;
+
     private EnemiesSpawner _enemiesSpawner;
 
     private TriggerOverlap _triggerOverlap;
@@ -19,6 +21,10 @@ public class RoomController : MonoBehaviour
     public event Action<RoomController> OnRoomEntered;
 
     public event Action<RoomController> OnRoomCleared;
+
+    public event Action<RoomController> OnRoomSpawn;
+
+    public static event Action OnEnter;
 
     private bool _isClosed;
 
@@ -36,11 +42,15 @@ public class RoomController : MonoBehaviour
 
         _triggerOverlap = GetComponent<TriggerOverlap>();
 
+        _minimap = FindObjectOfType<Minimap>();
+
         _enemiesSpawner.InitializeRoomManager(this);
         
         _triggerOverlap.OnTrigger += RoomEntered;
 
         EnemyHealthBehaviour.OnEnemyDeath += RemoveEnemy;
+
+        _minimap.RegisterRoom(this);
     }
 
     private void RemoveEnemy(EnemyHealthBehaviour enemy)
@@ -59,10 +69,11 @@ public class RoomController : MonoBehaviour
     public void RoomEntered(Collider collider)
     {
         PlayerController player = collider.GetComponent<PlayerController>();
-        if(player && !_isClear)
+        if(player)
         {
             _isClosed = true;
             OnRoomEntered?.Invoke(this);
+            
         }
     }        
 }

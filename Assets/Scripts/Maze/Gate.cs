@@ -34,6 +34,7 @@ public class Gate : MonoBehaviour
     {
         _collider.enabled = false;
         _door.gameObject.SetActive(false);
+        _roomController.OnRoomEntered -= CloseDoor;
     }
 
 
