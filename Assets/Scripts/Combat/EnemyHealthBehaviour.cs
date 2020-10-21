@@ -12,6 +12,8 @@ namespace Combat
 
         public static event Action<float> OnDamageTaken;
 
+        public static event Action<EnemyHealthBehaviour> OnEnemyDeath;
+
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
 
@@ -31,7 +33,11 @@ namespace Combat
 
             OnDamageTaken?.Invoke(damage);
 
-            if (CurrentHealth <= 0) Destroy(gameObject);
+            if (CurrentHealth <= 0) 
+            {
+                OnEnemyDeath?.Invoke(this);
+                Destroy(gameObject);
+            }
         }
 
         public void Heal(float healValue)

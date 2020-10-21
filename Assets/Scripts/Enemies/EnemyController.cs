@@ -10,7 +10,7 @@ namespace Enemies
         public bool IsControlDisabled { get ; set; }
 
         public event Action OnAttack;
-
+        
         private Rigidbody _rigidbody;
 
         private Transform _player;

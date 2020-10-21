@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,8 @@ namespace LevelGeneration
 
         private List<Vector2> _takenPositions = new List<Vector2>();
         private Room[,] _rooms; 
-        private int _gridX, _gridY;
+        private int _gridX, _gridY;  
+        public event Action<List<Vector2>> OnMazeGenerated;
 
         private void Start()
         {
@@ -29,6 +30,8 @@ namespace LevelGeneration
             GenerateRooms();
             SetRoomDoors();
             InstantiateMaze();
+
+            OnMazeGenerated?.Invoke(_takenPositions);
         }
 
         private void GenerateRooms() 
@@ -52,7 +55,7 @@ namespace LevelGeneration
 
                 checkPos = NewPosition(false);
 
-                if (GetNumberOfNeighbors(checkPos, _takenPositions) > 1 && Random.value > randomCompare)
+                if (GetNumberOfNeighbors(checkPos, _takenPositions) > 1 && UnityEngine.Random.value > randomCompare)
                 {
                     int j = 0;
                     do
@@ -80,20 +83,20 @@ namespace LevelGeneration
                 {
                     do
                     {
-                        i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
+                        i = Mathf.RoundToInt(UnityEngine.Random.value * (_takenPositions.Count - 1));
                         attempts++;
                     } while (GetNumberOfNeighbors(_takenPositions[i], _takenPositions) > 1 && attempts < 100);
                 }
-                else i = Mathf.RoundToInt(Random.value * (_takenPositions.Count - 1));
+                else i = Mathf.RoundToInt(UnityEngine.Random.value * (_takenPositions.Count - 1));
                
                 x = (int)_takenPositions[i].x;
                 y = (int)_takenPositions[i].y;
 
-                checkingPos = (Random.value < 0.5f) ?
+                checkingPos = (UnityEngine.Random.value < 0.5f) ?
 
-                     (Random.value < 0.5f) ? new Vector2(x, y + 1) : new Vector2(x, y - 1) :
+                     (UnityEngine.Random.value < 0.5f) ? new Vector2(x, y + 1) : new Vector2(x, y - 1) :
 
-                     (Random.value < 0.5f) ? new Vector2(x + 1, y) : new Vector2(x - 1, y);
+                     (UnityEngine.Random.value < 0.5f) ? new Vector2(x + 1, y) : new Vector2(x - 1, y);
 
             } while (_takenPositions.Contains(checkingPos) || checkingPos.x >= _gridX || checkingPos.x < -_gridX || checkingPos.y >= _gridY || checkingPos.y < -_gridY);
            
@@ -148,7 +151,7 @@ namespace LevelGeneration
                 spawnPosition.x *= 32;
                 spawnPosition.y *= 33;
         
-                MazeRoomSelector roomSelector = Object.Instantiate(_roomSpawner, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
+                MazeRoomSelector roomSelector = Instantiate(_roomSpawner, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
                 //mapper.RoomType = room.RoomType;
                 roomSelector.Up = room.DoorTop;
                 roomSelector.Down = room.DoorBot;

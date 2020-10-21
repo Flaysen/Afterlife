@@ -7,10 +7,17 @@ public class RoomPassage : MonoBehaviour
 
     private GameObject _mainCamera;
 
+    private RoomController _roomManager;
+
     private void Awake()
     {
         _mainCamera = GameObject.FindGameObjectWithTag("CameraRig");
         _tpDistance = 22;
+    }
+
+    public void Initialize(RoomController roomManager)
+    {
+        _roomManager = roomManager;
     }
 
     void OnTriggerEnter(Collider other)
