@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Afterlife.Assets.WorldGeneration.Scripts;
 using LevelGeneration;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,12 +51,21 @@ public class Minimap : MonoBehaviour
 
                 kvp.Value.transform.GetChild(0).GetComponent<Image>().color = _roomColor;
             }
+
+            if(kvp.Key.RoomType == RoomType.EXIT)
+            {
+                Debug.Log("blue");
+                Debug.Log(kvp.Key.transform.position);
+                kvp.Value.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
+            }
         }
 
         if(_lastRoomSlot)
         {
             _lastRoomSlot.transform.GetChild(0).GetComponent<Image>().color = _roomColor * 2;
         }
+
+        
          
         MoveMap(roomController, newPosition);
 

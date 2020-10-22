@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Afterlife.Assets.WorldGeneration.Scripts;
 using UnityEngine;
 
 namespace LevelGeneration 
@@ -11,6 +12,10 @@ namespace LevelGeneration
             roomULD, roomRUL, roomDRU, roomLDR,
             roomUDRL;
 
+        [SerializeField] private GameObject obstacleRoomUD, obstacleRoomLR;
+
+        [SerializeField] private GameObject exitRoom;
+
         public bool Up { get; set; }
         public bool Down { get; set; }
         public bool Left { get; set; }
@@ -21,7 +26,7 @@ namespace LevelGeneration
         private bool _left => Left;
         private bool _right => Right;
 
-        public int RoomType { get; set; }
+        public RoomType RoomType { get; set; }
    
         private void Start()
         {
@@ -40,7 +45,9 @@ namespace LevelGeneration
 
                         (_left) ? roomUDRL : roomDRU
                                 :
-                        (_left) ? roomULD : roomUD
+                        (_left) ? roomULD : (RoomType == RoomType.OBSTACLE) ?
+                        
+                            obstacleRoomUD : roomUD
 
                         :
 
@@ -63,9 +70,15 @@ namespace LevelGeneration
 
                   (_right) ? 
 
-                        (_left) ? roomRL : roomR
-                                :
+                        (_left) ? (RoomType == RoomType.OBSTACLE) ?
+
+                            obstacleRoomLR : roomRL : roomR
+                        :                    
                         roomL;
+                
+            if (RoomType == RoomType.EXIT) roomToInstantiate = exitRoom;
+            
+            roomToInstantiate.GetComponent<RoomController>().RoomType = RoomType;
             
             Instantiate(roomToInstantiate, transform.position, Quaternion.identity);
         }

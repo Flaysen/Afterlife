@@ -59,3 +59,9 @@ MonoBehaviour:
   roomLDR: {fileID: 3531846481058278581, guid: a8dda8cfa8dab6b40bde357cff39a502, type: 3}
   roomUDRL: {fileID: 6452665610374696926, guid: 1fe5ab2a5c79df74dae22147fed9a7f3,
     type: 3}
+  obstacleRoomUD: {fileID: 1273983099238057906, guid: dec223c5d1af83b40ad7ce10fa64d978,
+    type: 3}
+  obstacleRoomLR: {fileID: 4236442932226587507, guid: dee4318a87eb391409b31f21921d653f,
+    type: 3}
+  exitRoom: {fileID: 9141320371397906633, guid: 4f32d002e3007634280b0dbab80f34b6,
+    type: 3}

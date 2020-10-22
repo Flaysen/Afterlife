@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Afterlife.Assets.WorldGeneration.Scripts;
 using UnityEngine;
 
 namespace LevelGeneration
@@ -17,16 +18,29 @@ namespace LevelGeneration
         public event Action<List<Vector2>> OnMazeGenerated;
         private void Start()
         {
-
-            if (_roomsCount >= (_mazeSize.x * 2) * (_mazeSize.y * 2))
+            if (_roomsCount >= (_mazeSize.x * 2) * (_mazeSize.y * 2) * 0.75f)
             { 
-                _roomsCount = Mathf.RoundToInt((_mazeSize.x * 2) * (_mazeSize.y * 2));
+                _roomsCount = Mathf.RoundToInt((_mazeSize.x * 2) * (_mazeSize.y * 2) * 0.75f);
             }  
 
             _gridX = Mathf.RoundToInt(_mazeSize.x);
             _gridY = Mathf.RoundToInt(_mazeSize.y);
 
-            GenerateRooms();
+            bool isValid = false;
+            int x = 0;
+
+            while(!isValid)
+            {
+                x++;
+                GenerateRooms();
+                isValid = SetExitRoom();
+                if(x > 10)
+                {
+                    Debug.Log("Cannot spawn exit");
+                    return;
+                }
+            }
+           
             SetRoomDoors();
             InstantiateMaze();
 
@@ -35,9 +49,11 @@ namespace LevelGeneration
 
         private void GenerateRooms() 
         {
-            _rooms = new Room[_gridX * 2, _gridY * 2];;
+            _rooms = new Room[_gridX * 2, _gridY * 2];
 
-            _rooms[_gridX, _gridY] = new Room(Vector2.zero, 1);
+            _takenPositions.Clear();
+
+            _rooms[_gridX, _gridY] = new Room(Vector2.zero, RoomType.ENTRY);
 
             _takenPositions.Insert(0, Vector2.zero);
 
@@ -54,16 +70,17 @@ namespace LevelGeneration
 
                 checkPos = NewPosition(false);
 
-                if (GetNumberOfNeighbors(checkPos, _takenPositions) > 1 && UnityEngine.Random.value > randomCompare)
+                if (GetNeighbors(checkPos, _takenPositions).Length > 1 && UnityEngine.Random.value > randomCompare)
                 {
                     int j = 0;
                     do
                     {
                         checkPos = NewPosition(true);
                         j++;
-                    } while (GetNumberOfNeighbors(checkPos, _takenPositions) > 1 && j < 100);
+                    } while (GetNeighbors(checkPos, _takenPositions).Length > 1 && j < 100);
                 }
-                 _rooms[(int)checkPos.x + _gridX, (int)checkPos.y + _gridY] = new Room(checkPos, 0);
+
+                 _rooms[(int)checkPos.x + _gridX, (int)checkPos.y + _gridY] = new Room(checkPos, RoomType.COMMON);
                 _takenPositions.Insert(0, checkPos);
             }      
         }
@@ -84,7 +101,7 @@ namespace LevelGeneration
                     {
                         i = Mathf.RoundToInt(UnityEngine.Random.value * (_takenPositions.Count - 1));
                         attempts++;
-                    } while (GetNumberOfNeighbors(_takenPositions[i], _takenPositions) > 1 && attempts < 100);
+                    } while (GetNeighbors(_takenPositions[i], _takenPositions).Length > 1 && attempts < 100);
                 }
                 else i = Mathf.RoundToInt(UnityEngine.Random.value * (_takenPositions.Count - 1));
                
@@ -102,19 +119,19 @@ namespace LevelGeneration
             return checkingPos;
         }
  
-        private int GetNumberOfNeighbors(Vector2 checkingPos, List<Vector2> usedPositions)
+        private Vector2 [] GetNeighbors(Vector2 checkingPos, List<Vector2> usedPositions)
         {
-            int ret = 0;
+            List<Vector2> positions = new List<Vector2>();
 
-            if (usedPositions.Contains(checkingPos + Vector2.right)) ret++;
+            if (usedPositions.Contains(checkingPos + Vector2.right)) positions.Add(checkingPos + Vector2.right);
         
-            if (usedPositions.Contains(checkingPos + Vector2.left)) ret++;
+            if (usedPositions.Contains(checkingPos + Vector2.left)) positions.Add(checkingPos + Vector2.left);
          
-            if (usedPositions.Contains(checkingPos + Vector2.up))  ret++;
+            if (usedPositions.Contains(checkingPos + Vector2.up))  positions.Add(checkingPos + Vector2.up);
           
-            if (usedPositions.Contains(checkingPos + Vector2.down))  ret++;
+            if (usedPositions.Contains(checkingPos + Vector2.down))  positions.Add(checkingPos + Vector2.down);
         
-            return ret;
+            return positions.ToArray();
         }
 
         private void SetRoomDoors()
@@ -138,6 +155,29 @@ namespace LevelGeneration
             }
         }
 
+        private bool SetExitRoom()
+        { 
+            bool isExitSpawned = false;
+            int obstacleCount = (int)_roomsCount / 10;
+
+            for(int i = 0; i < _roomsCount - 1; i++)
+            {   
+                Vector2 [] neighbors = GetNeighbors(_takenPositions[i], _takenPositions);
+                if(neighbors.Length == 1 && !isExitSpawned)
+                {
+                    isExitSpawned = true;
+                    _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.EXIT);
+                }
+                if(neighbors.Length == 2 && (neighbors[0].x == neighbors[1].x || neighbors[0].y == neighbors[1].y) && obstacleCount > 0)
+                {
+                    obstacleCount--;
+                   _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.OBSTACLE);
+                }          
+            }     
+            if(isExitSpawned && obstacleCount == 0) return true;
+            return false;
+        }
+
         private void InstantiateMaze()
         {
             foreach (Room room in _rooms)
@@ -151,7 +191,7 @@ namespace LevelGeneration
                 spawnPosition.y *= 32;
         
                 MazeRoomSelector roomSelector = Instantiate(_mazeRoomSelector, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
-                //mapper.RoomType = room.RoomType;
+                roomSelector.RoomType = room.RoomType;
                 roomSelector.Up = room.DoorTop;
                 roomSelector.Down = room.DoorBot;
                 roomSelector.Right = room.DoorRight;

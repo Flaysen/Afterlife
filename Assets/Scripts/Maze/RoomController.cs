@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Afterlife.Assets.WorldGeneration.Scripts;
 using Combat;
 using Core;
 using PlayerControl;
@@ -8,6 +9,8 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+
+    public RoomType RoomType;
     public List<Gate> gates = new List<Gate>();
 
     public List<EnemyHealthBehaviour> enemies = new List<EnemyHealthBehaviour>();
