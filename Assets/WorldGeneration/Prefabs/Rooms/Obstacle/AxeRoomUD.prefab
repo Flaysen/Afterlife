@@ -175,8 +175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971126998646518047}
-  - component: {fileID: 3333776559890954715}
-  - component: {fileID: 4562048450253527359}
   m_Layer: 0
   m_Name: Gate (3)
   m_TagString: Untagged
@@ -201,31 +199,6 @@ Transform:
   m_Father: {fileID: 6489229838416751786}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &3333776559890954715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4010193453917172594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37e94666d5d61d4c9ceb21d3a1c4b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &4562048450253527359
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4010193453917172594}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 5, z: 2}
-  m_Center: {x: -0.25, y: 2.5, z: 0}
 --- !u!1 &4859735245261369818
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,8 +584,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5944333863803907918}
-  - component: {fileID: 8162583995491837834}
-  - component: {fileID: 6938639782918293358}
   m_Layer: 0
   m_Name: Gate (2)
   m_TagString: Untagged
@@ -637,31 +608,6 @@ Transform:
   m_Father: {fileID: 6489229838416751786}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &8162583995491837834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540071724186004771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37e94666d5d61d4c9ceb21d3a1c4b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &6938639782918293358
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540071724186004771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 5, z: 2}
-  m_Center: {x: -0.25, y: 2.5, z: 0}
 --- !u!1 &7918806055225391160
 GameObject:
   m_ObjectHideFlags: 0
