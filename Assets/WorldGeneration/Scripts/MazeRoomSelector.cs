@@ -7,14 +7,16 @@ namespace LevelGeneration
 {
     public class MazeRoomSelector : MonoBehaviour
     {
-        [SerializeField] private GameObject roomU, roomD, roomR, roomL,
-            roomUD, roomRL, roomUR, roomUL, roomDR, roomDL,
-            roomULD, roomRUL, roomDRU, roomLDR,
-            roomUDRL;
+        [SerializeField] private GameObject _entryRoom;
 
-        [SerializeField] private GameObject obstacleRoomUD, obstacleRoomLR;
+        [SerializeField] private GameObject _roomU, _roomD, _roomR, _roomL,
+            _roomUD, _roomRL, _roomUR, _roomUL, _roomDR, _roomDL,
+            _roomULD, _roomRUL, _roomDRU, _roomLDR,
+            _roomUDRL;
 
-        [SerializeField] private GameObject exitRoom;
+        [SerializeField] private GameObject [] _obstacleRoomsUD, _obstacleRoomsLR;
+
+        [SerializeField] private GameObject _exitRoom;
 
         public bool Up { get; set; }
         public bool Down { get; set; }
@@ -43,28 +45,28 @@ namespace LevelGeneration
 
                     (_right) ? 
 
-                        (_left) ? roomUDRL : roomDRU
+                        (_left) ? _roomUDRL : _roomDRU
                                 :
-                        (_left) ? roomULD : (RoomType == RoomType.OBSTACLE) ?
+                        (_left) ? _roomULD : (RoomType == RoomType.OBSTACLE) ?
                         
-                            obstacleRoomUD : roomUD
+                            _obstacleRoomsUD[Random.Range(0, _obstacleRoomsUD.Length)] : _roomUD
 
                         :
 
                   (_right) ? 
 
-                        (_left) ? roomRUL : roomUR
+                        (_left) ? _roomRUL : _roomUR
                                 :
-                        (_left) ? roomUL : roomU
+                        (_left) ? _roomUL : _roomU
 
                                         :
                  (_down) ?
 
                     (_right) ? 
 
-                        (_left) ? roomLDR : roomDR
+                        (_left) ? _roomLDR : _roomDR
                                 :
-                        (_left) ? roomDL : roomD
+                        (_left) ? _roomDL : _roomD
 
                         :
 
@@ -72,15 +74,15 @@ namespace LevelGeneration
 
                         (_left) ? (RoomType == RoomType.OBSTACLE) ?
 
-                            obstacleRoomLR : roomRL : roomR
+                            _obstacleRoomsLR[Random.Range(0, _obstacleRoomsLR.Length)] : _roomRL : _roomR
                         :                    
-                        roomL;
+                        _roomL;
                 
-            if (RoomType == RoomType.EXIT) roomToInstantiate = exitRoom;
+            if (RoomType == RoomType.EXIT) roomToInstantiate = _exitRoom;
             
             roomToInstantiate.GetComponent<RoomController>().RoomType = RoomType;
             
-            Instantiate(roomToInstantiate, transform.position, Quaternion.identity);
+            Instantiate(roomToInstantiate, transform.position, transform.rotation);
         }
     }
 }

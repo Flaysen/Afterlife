@@ -14,6 +14,8 @@ namespace Combat
         
         [SerializeField] private ProjectilePool _projectilePool;
 
+        [SerializeField] private Animator _animator;
+
         private IAttackInvoker _attackInvoker;
 
         private StatsBehaviour _stats;

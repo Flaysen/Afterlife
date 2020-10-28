@@ -9,6 +9,7 @@ namespace LevelGeneration
     {
         [SerializeField] private Vector2 _mazeSize;
         [SerializeField] private int _roomsCount;
+        [SerializeField] private int _obstacleRoomsCount;
         [SerializeField] private MazeRoomSelector _mazeRoomSelector;
         [SerializeField] private GameObject _entryRoom;
 
@@ -34,11 +35,7 @@ namespace LevelGeneration
                 x++;
                 GenerateRooms();
                 isValid = SetExitRoom();
-                if(x > 10)
-                {
-                    Debug.Log("Cannot spawn exit");
-                    return;
-                }
+                if(x > 10) return;
             }
            
             SetRoomDoors();
@@ -58,8 +55,7 @@ namespace LevelGeneration
             _takenPositions.Insert(0, Vector2.zero);
 
             Vector2 checkPos = Vector2.zero;
-            
-            //magic numbers
+        
             float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
 
             for(int i = 0; i < _roomsCount - 1; i++)
@@ -158,7 +154,7 @@ namespace LevelGeneration
         private bool SetExitRoom()
         { 
             bool isExitSpawned = false;
-            int obstacleCount = (int)_roomsCount / 10;
+            int obstacleCount = _obstacleRoomsCount;
 
             for(int i = 0; i < _roomsCount - 1; i++)
             {   
@@ -168,7 +164,7 @@ namespace LevelGeneration
                     isExitSpawned = true;
                     _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.EXIT);
                 }
-                if(neighbors.Length == 2 && (neighbors[0].x == neighbors[1].x || neighbors[0].y == neighbors[1].y) && obstacleCount > 0)
+                if(neighbors.Length == 2 && (neighbors[0].x == neighbors[1].x || neighbors[0].y == neighbors[1].y) && _obstacleRoomsCount > 0)
                 {
                     obstacleCount--;
                    _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.OBSTACLE);
@@ -200,4 +196,3 @@ namespace LevelGeneration
         }
     }
 }
-

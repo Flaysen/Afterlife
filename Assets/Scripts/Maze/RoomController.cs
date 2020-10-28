@@ -47,7 +47,7 @@ public class RoomController : MonoBehaviour
 
         _minimap = FindObjectOfType<Minimap>();
 
-        _enemiesSpawner.InitializeRoomManager(this);
+        _enemiesSpawner?.InitializeRoomManager(this);
         
         _triggerOverlap.OnTrigger += RoomEntered;
 

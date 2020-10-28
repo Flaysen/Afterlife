@@ -17,6 +17,8 @@ namespace PlayerControl
 
         [SerializeField] private float _dashTime = 0.2f;
 
+        [SerializeField] private Animator _animator;
+
         private Vector3 _moveVelocity;
 
         private Vector3 _moveDirection;
@@ -60,10 +62,20 @@ namespace PlayerControl
                     CalculateMovement();
 
                     if (_input.IsJumpButtonPressed)
+                    {
                         HandleJump();
+                        _animator.SetBool("IsJumping", true);
+                    }
+                    else _animator.SetBool("IsJumping", false);
+                       
+
 
                     if (_input.IsDashButtonPressed)
-                        HandleDash();            
+                    {
+                        HandleDash();
+                        _animator.SetBool("IsDashing", true);
+                    }
+                    else _animator.SetBool("IsDashing", false);            
                 }
 
                 HandleRotation();
@@ -81,7 +93,7 @@ namespace PlayerControl
             if (CheckIfGrounded())
             {
                 _moveVelocity.y = _jumpUpForce;
-                _moveVelocity += _jumpForwardForce * _input.MoveInput;
+                _moveVelocity += _jumpForwardForce * _input.MoveInput;                
             }
         }
 
@@ -117,10 +129,17 @@ namespace PlayerControl
         private void CalculateMovement()
         {       
             _moveDirection = _input.MoveInput.normalized;
-            _moveVelocity = _moveDirection * _moveSpeed;         
+            _moveVelocity = _moveDirection * _moveSpeed;
+            if (_moveVelocity != Vector3.zero) _animator.SetFloat("Speed", 1);
+            else _animator.SetFloat("Speed", 0);         
         }
 
-        private void HandleMovement() => _characterController.Move(_moveVelocity * Time.deltaTime);
+        private void HandleMovement() 
+        {
+            _characterController.Move(_moveVelocity * Time.deltaTime);
+            _animator.SetFloat("Speed", 1);
+   
+        }
 
         private bool CheckIfGrounded()
         {
