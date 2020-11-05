@@ -6,9 +6,11 @@ namespace Stats
         ProjectileDamage,
         ProjectileSpeed,
         ProjectileSize,
-        ProjectileCount,
+        ProjectilesCount,
         AttackRatio,
         AttackRange,
-        AttackRecoil
+        AttackRecoil,
+        Speed,
+        Awareness
     }
 }

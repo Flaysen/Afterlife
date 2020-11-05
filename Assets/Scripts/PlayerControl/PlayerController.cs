@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using Stats;
+using UnityEngine;
 
 namespace PlayerControl
 {
     [RequireComponent(typeof(InputHandler), typeof(CharacterController))]
     public class PlayerController : MonoBehaviour, IController
     {
-        [SerializeField] private float _moveSpeed = 3.0f;
-
         [SerializeField] private float _gravity = 20.0f;
 
         [SerializeField] private float _jumpUpForce = 4.0f;
@@ -32,6 +31,8 @@ namespace PlayerControl
         private float _nextDashTime;
 
         private Camera _mainCamera;
+        
+        private StatsBehaviour _statsBehaviour;
 
         private InputHandler _input;
 
@@ -48,6 +49,8 @@ namespace PlayerControl
             _input = GetComponent<InputHandler>();
 
             _characterController = GetComponent<CharacterController>();
+
+            _statsBehaviour = GetComponent<StatsBehaviour>();
         }
 
         private void Update()
@@ -129,7 +132,7 @@ namespace PlayerControl
         private void CalculateMovement()
         {       
             _moveDirection = _input.MoveInput.normalized;
-            _moveVelocity = _moveDirection * _moveSpeed;
+            _moveVelocity = _moveDirection * _statsBehaviour.GetStatValue(StatType.Speed);
             if (_moveVelocity != Vector3.zero) _animator.SetFloat("Speed", 1);
             else _animator.SetFloat("Speed", 0);         
         }
@@ -137,8 +140,6 @@ namespace PlayerControl
         private void HandleMovement() 
         {
             _characterController.Move(_moveVelocity * Time.deltaTime);
-            _animator.SetFloat("Speed", 1);
-   
         }
 
         private bool CheckIfGrounded()

@@ -7,7 +7,7 @@ using System;
 
 namespace Combat
 {
-    [RequireComponent(typeof(IAttackInvoker), (typeof(StatsBehaviour)))]
+    [RequireComponent(typeof(IAttackHandler), (typeof(StatsBehaviour)))]
     public class AttackHandler : MonoBehaviour
     {
         private List<Turret> _turrets = new List<Turret>();
@@ -16,7 +16,7 @@ namespace Combat
 
         [SerializeField] private Animator _animator;
 
-        private IAttackInvoker _attackInvoker;
+        private IAttackHandler _attackInvoker;
 
         private StatsBehaviour _stats;
 
@@ -30,11 +30,13 @@ namespace Combat
         {
             _stats = GetComponent<StatsBehaviour>();
 
-            _attackInvoker = GetComponent<IAttackInvoker>();
+            _attackInvoker = GetComponent<IAttackHandler>();
 
             _avoidTarget = GetComponent<IDamagable>();
 
-            _attackInvoker.OnAttack += HandleFire;
+            _attackInvoker.OnAttackTrigger += HandleAttack;
+
+            _attackInvoker.OnAttackCancel += AttackCancel;
 
             foreach(Turret turret in GetComponentsInChildren<Turret>())
             {
@@ -42,7 +44,7 @@ namespace Combat
             }
         }
 
-        private void HandleFire()
+        private void HandleAttack()
         {
             if(Time.time > _nextAttackTime)
             {
@@ -51,12 +53,20 @@ namespace Combat
                 OnProjectileFired?.Invoke();
 
                 _nextAttackTime = Time.time + _stats.GetStatValue(StatType.AttackRatio);
-            }    
+
+                _animator.SetBool("IsAttacking", true);
+            }            
+           
+        }
+
+        private void AttackCancel()
+        {
+            _animator.SetBool("IsAttacking", false);
         }
 
         private void SpawnProjectiles()
         {
-            int activeTurrets = (int)_stats.GetStatValue(StatType.ProjectileCount);
+            int activeTurrets = (int)_stats.GetStatValue(StatType.ProjectilesCount);
 
             for (int i = 0; i < activeTurrets; i++)
             {

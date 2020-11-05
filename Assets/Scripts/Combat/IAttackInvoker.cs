@@ -2,9 +2,10 @@
 
 namespace Combat
 {
-    public interface IAttackInvoker
+    public interface IAttackHandler
     {
-        event Action OnAttack;   
+        event Action OnAttackTrigger;   
+        event Action OnAttackCancel;
     }
 }
 

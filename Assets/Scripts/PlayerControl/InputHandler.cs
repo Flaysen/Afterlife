@@ -5,22 +5,17 @@ using UnityEngine.EventSystems;
 
 namespace PlayerControl
 {
-    public class InputHandler : MonoBehaviour, IAttackInvoker
+    public class InputHandler : MonoBehaviour, IAttackHandler
     {
         [SerializeField] private KeyCode _fireButton;
-
         [SerializeField] private KeyCode _dashButton;
-
         [SerializeField] private KeyCode _jumpButton;
-
         [SerializeField] private KeyCode _interactButton;
-
         [SerializeField] private KeyCode[] _spellCastButtons;
 
-        public event Action OnAttack = delegate {};
-
+        public event Action OnAttackTrigger = delegate {};
+        public event Action OnAttackCancel = delegate {};
         public event Action OnInteract = delegate {};
-
         public event Action<int> OnAnySpellCast = delegate {};
 
         public Vector3 MoveInput { get; private set; }
@@ -44,7 +39,9 @@ namespace PlayerControl
 
         private void GetKeyboardInput()
         {
-            if (Input.GetKey(_fireButton) && !EventSystem.current.IsPointerOverGameObject()) OnAttack?.Invoke();
+            if (Input.GetKey(_fireButton) && !EventSystem.current.IsPointerOverGameObject()) OnAttackTrigger?.Invoke();
+
+            if (Input.GetKeyUp(_fireButton)) OnAttackCancel?.Invoke();
 
             if (Input.GetKey(_interactButton)) OnInteract?.Invoke();
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2714538957968791728}
   - component: {fileID: 9091537358462737678}
+  - component: {fileID: 5768156929855519836}
   m_Layer: 0
   m_Name: wallHPrefab3
   m_TagString: Untagged
@@ -45,6 +46,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6815736, y: 2, z: 0.61792445}
   m_Center: {x: -0.047557354, y: 1, z: 0.008112207}
+--- !u!208 &5768156929855519836
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213559537069849514}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.840787, y: 1, z: 0.30896226}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.04755735, y: 1, z: 0.008112207}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3554787077957340645
 PrefabInstance:
   m_ObjectHideFlags: 0
