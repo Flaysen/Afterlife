@@ -38,6 +38,8 @@ namespace Combat
 
             _attackInvoker.OnAttackCancel += AttackCancel;
 
+            if(!_projectilePool) _projectilePool = GameObject.FindGameObjectWithTag("EnemyProjectilesPool").GetComponent<ProjectilePool>();
+
             foreach(Turret turret in GetComponentsInChildren<Turret>())
             {
                 _turrets.Add(turret);            

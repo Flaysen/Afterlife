@@ -1,30 +1,33 @@
-﻿using Combat;
+﻿using System.Collections.Generic;
+using Combat;
 using UnityEngine;
+using Unity;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] private EnemyHealthBehaviour _monsterPrefab;
+    [SerializeField] private EnemyHealthBehaviour [] _enemiesPrefabs;
 
     private RoomController _roomController;
       
-    private void Start()
+    private void Awake()
     {
+        _roomController = GetComponentInParent<RoomController>();
         _roomController.OnRoomEntered += SpawnMonsters;
     }
 
-    public void InitializeRoomManager(RoomController roomController)
-    {
-        _roomController = roomController;
-    }
+    // public void Initialize(RoomController roomController)
+    // {
+    //     _roomController = roomController;
+    // }
 
     private void SpawnMonsters(RoomController roomController)
     {
-      
-        EnemyHealthBehaviour monster = Instantiate(_monsterPrefab,
-                    transform.position + _monsterPrefab.transform.localPosition,
-                    Quaternion.identity);
-
-        roomController.enemies.Add(monster);
+        EnemyHealthBehaviour enemyToSpawn = Instantiate(
+            _enemiesPrefabs[Random.Range(0, _enemiesPrefabs.Length)],
+            transform.position,
+            Quaternion.identity);
+                    
+        roomController.enemies.Add(enemyToSpawn);
     
         _roomController.OnRoomEntered -= SpawnMonsters;
     }
