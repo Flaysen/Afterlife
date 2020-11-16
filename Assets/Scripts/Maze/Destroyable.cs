@@ -10,8 +10,7 @@ public class Destroyable : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        Destroy(this.gameObject);
         Instantiate(destroyEffect, transform.position, transform.rotation);
-        //AudioSource.PlayClipAtPoint(destroySound, transform.position);
+        Destroy(this.gameObject);
     }
 }

@@ -5,22 +5,20 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     private GameObject _door;
-
     private Collider _collider;
-
     private RoomController _roomController;
+    private MeshRenderer _meshRenderer;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-
         _collider.enabled = false;
     }
 
     private void Start()
     {
         _door = transform.GetChild(0).gameObject;
-
+        _door.gameObject.SetActive(false);
         _roomController.OnRoomEntered += CloseDoor;
         _roomController.OnRoomCleared += DisableDoors;
     }
@@ -40,7 +38,10 @@ public class Gate : MonoBehaviour
 
     private void CloseDoor(RoomController roomController)
     {
-        _collider.enabled = true;
-        //_renderer.enabled = true;
+        if(_roomController.enemies.Count > 0)
+        {
+            _collider.enabled = true;
+            _door.gameObject.SetActive(true);
+        }     
     }
 }

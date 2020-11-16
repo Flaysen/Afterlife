@@ -119,6 +119,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomingAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 2294842309680879026, guid: c51de0c6845431c4bac4fe18a3cd9f45,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852536253483247215, guid: c51de0c6845431c4bac4fe18a3cd9f45,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699743329143916669, guid: c51de0c6845431c4bac4fe18a3cd9f45,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6203883782136986724, guid: c51de0c6845431c4bac4fe18a3cd9f45,
         type: 3}
       propertyPath: m_LocalPosition.x
