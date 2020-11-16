@@ -20,7 +20,6 @@ public class RoomInteriorGenerator : MonoBehaviour
     {
         pattern = patterns[UnityEngine.Random.Range(0, patterns.Length)];
         GenerateRoomTiles(RandomPatternOrientation(pattern));
-        Debug.Log(22);
     }
 
     private void GenerateRoomTiles(Texture2D pattern)
@@ -102,12 +101,10 @@ public class RoomInteriorGenerator : MonoBehaviour
             if (original[i].Equals(wallsH))
             {
                 original[i] = wallsV;
-                Debug.Log("Wall rotation");
             }
             else if (original[i].Equals(wallsV))
             {
                 original[i] = wallsH;
-                Debug.Log("Wall rotation");
             }
         }
 

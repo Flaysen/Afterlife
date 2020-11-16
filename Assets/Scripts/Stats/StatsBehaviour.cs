@@ -47,7 +47,6 @@ namespace Stats
                     if (mod.StatType == stat.Key)
                     {
                         stat.Value.RemoveModifier(mod);
-                        Debug.Log(stat.Value.Value);
                     }
                 }
             }
@@ -62,7 +61,6 @@ namespace Stats
                     if(mod.StatType == stat.Key)
                     {
                         stat.Value.AddModifier(mod);
-                        Debug.Log(stat.Value.Value);
                     }
                 }
             }

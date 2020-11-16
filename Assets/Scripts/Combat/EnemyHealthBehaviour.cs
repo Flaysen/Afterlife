@@ -2,12 +2,14 @@
 using Stats;
 using Resource;
 using System;
+using AfterlifeProject.Assets.Scripts.Core;
 
 namespace Combat
 {
     [RequireComponent(typeof(StatsBehaviour))]
     public class EnemyHealthBehaviour : MonoBehaviour, IDamagable, IHealable
     {
+        [SerializeField] private GameObject _deathParticles;
         private StatsBehaviour _stats;
 
         public static event Action<float> OnDamageTaken;
@@ -36,7 +38,10 @@ namespace Combat
             if (CurrentHealth <= 0) 
             {
                 OnEnemyDeath?.Invoke(this);
+
                 Destroy(gameObject);
+                GameObject deathParticles = Instantiate(_deathParticles, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                deathParticles.GetComponent<DestroyAfterTime>().StartTimer(0.5f);
             }
         }
 

@@ -73,13 +73,11 @@ public class RoomController : MonoBehaviour
 
     private void RemoveEnemy(EnemyHealthBehaviour enemy)
     {
-        Debug.Log("MONSTER_DEAD");
         if(_isClosed == true)
         {
             enemies.Remove(enemy);
             if (enemies.Count == 0)
             {
-                Debug.Log("Clear");
                 _isClear = true;
                 OnRoomCleared?.Invoke(this);
             }
@@ -92,7 +90,7 @@ public class RoomController : MonoBehaviour
         if(player)
         {
             _isClosed = true;
-            OnRoomEntered?.Invoke(this);       
+            if(RoomType!= RoomType.ENTRY) OnRoomEntered?.Invoke(this);       
         }
     }        
 }

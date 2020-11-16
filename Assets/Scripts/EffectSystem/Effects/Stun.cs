@@ -12,7 +12,6 @@ public class Stun : Effect
         if(_controller != null)
         {
             _controller.IsControlDisabled = true;
-            Debug.Log("Stun");
             PlayParticles(target);
         }
     }

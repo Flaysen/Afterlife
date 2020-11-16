@@ -131,6 +131,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5947978032566259866, guid: 3c5a3e80d54a2ab46bd7507205578239,
+        type: 3}
+      propertyPath: _deathParticles
+      value: 
+      objectReference: {fileID: 154900285457883937, guid: 5c13e8bacf94d2147ad2d9a216430156,
+        type: 3}
     - target: {fileID: 7675976025833636628, guid: 3c5a3e80d54a2ab46bd7507205578239,
         type: 3}
       propertyPath: _baseStats

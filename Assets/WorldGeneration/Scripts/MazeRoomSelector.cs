@@ -15,7 +15,6 @@ namespace LevelGeneration
             _roomUDRL;
 
         [SerializeField] private GameObject [] _obstacleRoomsUD, _obstacleRoomsLR;
-
         [SerializeField] private GameObject _exitRoom;
 
         public bool Up { get; set; }
@@ -79,10 +78,10 @@ namespace LevelGeneration
                         _roomL;
                 
             if (RoomType == RoomType.EXIT) roomToInstantiate = _exitRoom;
-            
+         
             roomToInstantiate.GetComponent<RoomController>().RoomType = RoomType;
             
-            Instantiate(roomToInstantiate, transform.position, transform.rotation);
+            Instantiate(roomToInstantiate, transform.position, transform.rotation, transform);
         }
     }
 }

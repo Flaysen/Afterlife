@@ -4,6 +4,7 @@ using UnityEngine;
 using Core;
 using Stats;
 using Resource;
+using AfterlifeProject.Assets.Scripts.Core;
 
 namespace Projectiles
 {
@@ -27,6 +28,7 @@ namespace Projectiles
         private Rigidbody _rigidbody;
 
         private TriggerOverlap _triggerOverlap;
+        private CollisionOverlap _collisionOverlap;
 
         public float Speed => _speed;
 
@@ -48,7 +50,11 @@ namespace Projectiles
 
             _triggerOverlap = GetComponent<TriggerOverlap>();
 
+            _collisionOverlap = GetComponent<CollisionOverlap>();
+
             _triggerOverlap.OnTrigger += ProjectileHitHandle;
+
+            _collisionOverlap.OnCollision += ProjectileCollisionHandle;
 
             foreach(SpellBehaviour modifier in _modifiers)
             {
@@ -127,12 +133,30 @@ namespace Projectiles
                 }
                 damagable.TakeDamage(_damage);
     
-                if(_hitParticlesPrefab)Instantiate(_hitParticlesPrefab, transform.position, Quaternion.identity);
+                SpawnParticles();
     
                 gameObject.SetActive(false);        
             }
         }
-        void OnDisable()
+
+        private void ProjectileCollisionHandle(Collision collision)
+        {
+            IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+            if(damagable == null)
+            {
+                SpawnParticles();
+                gameObject.SetActive(false); 
+            }
+        }
+
+        private void SpawnParticles()
+        {
+            if(_hitParticlesPrefab)Instantiate(_hitParticlesPrefab, transform.position, Quaternion.identity);
+
+            _hitParticlesPrefab.GetComponent<DestroyAfterTime>().StartTimer(0.05f);
+        }
+
+        private void OnDisable()
         {
             foreach(SpellBehaviour modifier in _modifiers)
             {

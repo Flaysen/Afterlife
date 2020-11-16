@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3635037178112893330}
   - component: {fileID: 93907816564863062}
   - component: {fileID: 1010730589888543420}
+  - component: {fileID: 1442707966214719718}
+  - component: {fileID: 5772815116010122341}
   m_Layer: 8
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -95,7 +97,7 @@ SphereCollider:
   m_GameObject: {fileID: 2294842309680879026}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -140,7 +142,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _modifiers: []
-  Target: {fileID: 0}
+  _hitParticlesPrefab: {fileID: 3261659195227617933, guid: 849867ed55ee02f49a049452eff565bc,
+    type: 3}
+--- !u!114 &1442707966214719718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294842309680879026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d41bc3f0e5b5c4da94d6f86ba0e16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &5772815116010122341
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294842309680879026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5699743329143916669
 GameObject:
   m_ObjectHideFlags: 0

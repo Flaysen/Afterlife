@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 1134455907879830675}
   - component: {fileID: 4360040824520545623}
   - component: {fileID: 1225767043497075651}
+  - component: {fileID: -9050988065542494572}
+  - component: {fileID: 7335827540340683519}
   m_Layer: 0
   m_Name: PlayerAttack
   m_TagString: Untagged
@@ -142,6 +144,31 @@ MonoBehaviour:
   _modifiers: []
   _hitParticlesPrefab: {fileID: 2192340114416529922, guid: c6460b7251d416d4aa90489ba197f958,
     type: 3}
+--- !u!135 &-9050988065542494572
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455781497900396723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7335827540340683519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455781497900396723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d41bc3f0e5b5c4da94d6f86ba0e16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8274754039711935868
 GameObject:
   m_ObjectHideFlags: 0

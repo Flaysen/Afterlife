@@ -36,9 +36,7 @@ namespace InventorySystem
 
             item.GetItemBehaviour();
 
-            ItemAdded?.Invoke(item);    
-
-            Debug.Log(item.GetType());    
+            ItemAdded?.Invoke(item);        
         }
 
         public void RemoveItem(Item item)

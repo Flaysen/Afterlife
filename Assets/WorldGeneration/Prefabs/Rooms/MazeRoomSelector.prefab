@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9cfafb59d2d1e438e18350ecd8072b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entryRoom: {fileID: 0}
+  _entryRoom: {fileID: 1539488344085735504, guid: a356f32a8f9604645805209ed7e0a1c5,
+    type: 3}
   _roomU: {fileID: 5493039494018446465, guid: 26014fc6fedbf5d4e919ea0120c3a20a, type: 3}
   _roomD: {fileID: 1440339330570282798, guid: f54663eaa9b607a4d9d663d650633277, type: 3}
   _roomR: {fileID: 4620314506471466656, guid: 49f745a25bf342443abb52c45a9c6f48, type: 3}

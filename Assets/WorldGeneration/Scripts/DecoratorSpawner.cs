@@ -60,7 +60,8 @@ namespace LevelGeneration
             GameObject @object = Instantiate(
                 _decoratorMeshes[Random.Range(0, _decoratorMeshes.Length)],
                 SetPrefabPosition(),
-                SetPrefabRotation());
+                SetPrefabRotation(),
+                transform);
 
             //@object.transform.localScale = SetPrefabScale();
 

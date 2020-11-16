@@ -7,25 +7,30 @@ namespace LevelGeneration
 {
     public class MazeGenerator : MonoBehaviour
     {
-        [SerializeField] private Vector2 _mazeSize;
-        [SerializeField] private int _roomsCount;
-        [SerializeField] private int _obstacleRoomsCount;
         [SerializeField] private MazeRoomSelector _mazeRoomSelector;
-        [SerializeField] private GameObject _entryRoom;
-
+        public LevelData LevelData { get; set; }
         private List<Vector2> _takenPositions = new List<Vector2>();
         private Room[,] _rooms; 
         private int _gridX, _gridY;  
+        private int _fixedRoomsCount;
+       
         public event Action<List<Vector2>> OnMazeGenerated;
-        private void Start()
-        {
-            if (_roomsCount >= (_mazeSize.x * 2) * (_mazeSize.y * 2) * 0.75f)
-            { 
-                _roomsCount = Mathf.RoundToInt((_mazeSize.x * 2) * (_mazeSize.y * 2) * 0.75f);
-            }  
 
-            _gridX = Mathf.RoundToInt(_mazeSize.x);
-            _gridY = Mathf.RoundToInt(_mazeSize.y);
+        public void ExecuteGeneration(Transform parentObject)
+        {
+            GameObject mazeObject = new GameObject("Maze");
+
+            mazeObject.transform.parent = parentObject;
+
+            if (LevelData.RoomsCount >= (LevelData.MazeSize.x * 2) * (LevelData.MazeSize.y * 2) * 0.75f)
+            { 
+                _fixedRoomsCount = Mathf.RoundToInt((LevelData.MazeSize.x * 2) * (LevelData.MazeSize.y * 2) * 0.75f);
+            }
+
+            else _fixedRoomsCount = LevelData.RoomsCount;  
+
+            _gridX = Mathf.RoundToInt(LevelData.MazeSize.x);
+            _gridY = Mathf.RoundToInt(LevelData.MazeSize.y);
 
             bool isValid = false;
             int x = 0;
@@ -35,11 +40,12 @@ namespace LevelGeneration
                 x++;
                 GenerateRooms();
                 isValid = SetExitRoom();
+
                 if(x > 10) return;
             }
-           
+        
             SetRoomDoors();
-            InstantiateMaze();
+            InstantiateMaze(mazeObject.transform);
 
             OnMazeGenerated?.Invoke(_takenPositions);
         }
@@ -58,9 +64,9 @@ namespace LevelGeneration
         
             float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
 
-            for(int i = 0; i < _roomsCount - 1; i++)
+            for(int i = 0; i < _fixedRoomsCount - 1; i++)
             {
-                float randomPerc = (i / (_roomsCount - 1));
+                float randomPerc = (i / (_fixedRoomsCount - 1));
 
                 randomCompare = Mathf.Lerp(randomCompareStart, randomCompareEnd, randomPerc);
 
@@ -154,9 +160,9 @@ namespace LevelGeneration
         private bool SetExitRoom()
         { 
             bool isExitSpawned = false;
-            int obstacleCount = _obstacleRoomsCount;
+            int obstacleCount = LevelData.ObstacleRoomsCount;
 
-            for(int i = 0; i < _roomsCount - 1; i++)
+            for(int i = 0; i < _fixedRoomsCount - 1; i++)
             {   
                 Vector2 [] neighbors = GetNeighbors(_takenPositions[i], _takenPositions);
                 if(neighbors.Length == 1 && !isExitSpawned)
@@ -164,7 +170,7 @@ namespace LevelGeneration
                     isExitSpawned = true;
                     _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.EXIT);
                 }
-                if(neighbors.Length == 2 && (neighbors[0].x == neighbors[1].x || neighbors[0].y == neighbors[1].y) && _obstacleRoomsCount > 0)
+                if(neighbors.Length == 2 && (neighbors[0].x == neighbors[1].x || neighbors[0].y == neighbors[1].y) && obstacleCount > 0)
                 {
                     obstacleCount--;
                    _rooms[(int)_takenPositions[i].x + _gridX, (int)_takenPositions[i].y + _gridY] = new Room(_takenPositions[i], RoomType.OBSTACLE);
@@ -174,7 +180,7 @@ namespace LevelGeneration
             return false;
         }
 
-        private void InstantiateMaze()
+        private void InstantiateMaze(Transform parentObject)
         {
             foreach (Room room in _rooms)
             {
@@ -182,11 +188,16 @@ namespace LevelGeneration
                 {
                     continue; 
                 }
+
                 Vector2 spawnPosition = room.GridPosition;
                 spawnPosition.x *= 32;
                 spawnPosition.y *= 32;
         
-                MazeRoomSelector roomSelector = Instantiate(_mazeRoomSelector, new Vector3(spawnPosition.x, 0, spawnPosition.y), Quaternion.identity).GetComponent<MazeRoomSelector>();
+                MazeRoomSelector roomSelector = Instantiate(_mazeRoomSelector,
+                    new Vector3(spawnPosition.x, 0, spawnPosition.y),
+                    Quaternion.identity,
+                    parentObject).GetComponent<MazeRoomSelector>();
+
                 roomSelector.RoomType = room.RoomType;
                 roomSelector.Up = room.DoorTop;
                 roomSelector.Down = room.DoorBot;

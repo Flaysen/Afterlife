@@ -24,7 +24,7 @@ public class Minimap : MonoBehaviour
     }
 
     public void RegisterRoom(RoomController roomController)
-    {      
+    {     
         Vector2 mapPosition = new Vector2(transform.position.x, transform.position.y);
         Vector2 roomPosition = new Vector2(roomController.transform.position.x, roomController.transform.position.z) * _mapScaling;
 
@@ -35,6 +35,14 @@ public class Minimap : MonoBehaviour
         _roomsDictionary.Add(roomController, image);
 
         roomController.OnRoomEntered += ChangeRoomColor; 
+    }
+
+    public void ResetMinimap()
+    {
+        foreach(Transform slot in transform)
+        {
+            Destroy(slot.gameObject);
+        }
     }
 
     private void ChangeRoomColor(RoomController roomController)
@@ -54,8 +62,6 @@ public class Minimap : MonoBehaviour
 
             if(kvp.Key.RoomType == RoomType.EXIT)
             {
-                Debug.Log("blue");
-                Debug.Log(kvp.Key.transform.position);
                 kvp.Value.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
             }
         }

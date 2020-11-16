@@ -21,9 +21,7 @@ public class ChaseState : BaseState
     }
 
     public override Type Tick()
-    {
-        Debug.Log("Chase");
-        
+    {       
         _enemyController.Agent.speed = _statBehaviour.GetStatValue(StatType.Speed);
 
         _enemyController.Agent.stoppingDistance = _statBehaviour.GetStatValue(StatType.AttackRange); 
@@ -46,6 +44,6 @@ public class ChaseState : BaseState
     public void FallowPlayer()
     {
         _enemyController.Agent.SetDestination(_enemyController.Player.transform.position);
-        _enemyController.Animator.SetFloat("Speed", 1);
+        //_enemyController.Animator.SetFloat("Speed", 1);
     }
 }
