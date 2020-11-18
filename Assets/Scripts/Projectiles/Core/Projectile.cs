@@ -68,9 +68,6 @@ namespace Projectiles
 
             _transform.localScale = _initialScale * _size;
 
-            _transform.rotation *= Quaternion.Euler(0f,
-             Random.Range( -_recoil, _recoil), 0f);
-
             _rigidbody.velocity = Vector3.zero;
 
             _rigidbody.velocity = _transform.forward * _speed;
@@ -94,6 +91,9 @@ namespace Projectiles
             _transform.position = transform.position;
 
             _transform.rotation = transform.rotation;
+
+            _transform.rotation *= Quaternion.Euler(0f,
+             Random.Range( -_recoil, _recoil), 0f);
 
             _damage = stats.GetStatValue(StatType.ProjectileDamage);
 
@@ -142,7 +142,7 @@ namespace Projectiles
         private void ProjectileCollisionHandle(Collision collision)
         {
             IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-            if(damagable == null)
+            if(damagable == null  && collision.gameObject.layer != gameObject.layer)
             {
                 SpawnParticles();
                 gameObject.SetActive(false); 

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1225767043497075651}
   - component: {fileID: -9050988065542494572}
   - component: {fileID: 7335827540340683519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7461491781137791928}
   - component: {fileID: 4147910608216859703}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

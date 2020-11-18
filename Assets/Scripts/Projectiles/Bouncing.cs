@@ -21,7 +21,7 @@ namespace Projectiles
             Ray ray = new Ray(projectile.Transform.position, projectile.Transform.forward);
             RaycastHit hit;
 
-            bool isHit = Physics.Raycast(ray, out hit, Time.deltaTime * speed + .3f,  ~(projectile as MonoBehaviour).gameObject.layer);
+            bool isHit = Physics.Raycast(ray, out hit, Time.deltaTime * speed + .45f,  ~(projectile as MonoBehaviour).gameObject.layer);
             
             if(isHit && hit.collider.gameObject.GetComponent<IDamagable>() == null)
             {

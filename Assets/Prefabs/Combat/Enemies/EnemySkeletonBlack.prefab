@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 3101105095886284886}
   - component: {fileID: 3706695135667504969}
   - component: {fileID: 2701206519225821157}
+  - component: {fileID: 8607507117513500173}
   m_Layer: 0
   m_Name: EnemySkeletonBlack
   m_TagString: Untagged
@@ -638,6 +639,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8607507117513500173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935799125043399793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fa8703281ced541bacabbdc4dae3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charPrefab: {fileID: 1180539365481448500}
 --- !u!1 &2909619873535508788
 GameObject:
   m_ObjectHideFlags: 0

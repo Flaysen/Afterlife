@@ -182,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1512f4348ae2240a18e7c8856093a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chestPrefab: {fileID: 7877407678157805528, guid: 3edd40dc98ea75a499ff5ff881db1a80,
+    type: 3}
   RoomType: 0
   gates: []
   enemies: []

@@ -7,9 +7,11 @@ using AfterlifeProject.Assets.Scripts.Core;
 namespace Combat
 {
     [RequireComponent(typeof(StatsBehaviour))]
+    [RequireComponent(typeof(DamageHighlight))]
     public class EnemyHealthBehaviour : MonoBehaviour, IDamagable, IHealable
     {
         [SerializeField] private GameObject _deathParticles;
+        [SerializeField] private DamageHighlight _damageHighlight;
         private StatsBehaviour _stats;
 
         public static event Action<float> OnDamageTaken;
@@ -22,6 +24,7 @@ namespace Combat
         private void Start()
         {
             _stats = GetComponent<StatsBehaviour>();
+            _damageHighlight = GetComponent<DamageHighlight>();
 
             MaxHealth = _stats.GetStatValue(StatType.Health);
 
@@ -34,6 +37,7 @@ namespace Combat
                 CurrentHealth - damage : 0;
 
             OnDamageTaken?.Invoke(damage);
+            _damageHighlight.HighLight();
 
             if (CurrentHealth <= 0) 
             {

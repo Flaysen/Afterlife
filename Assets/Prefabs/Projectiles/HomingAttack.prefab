@@ -107,6 +107,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &8485287841896222885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029376290490400125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f44a0dcda677f4c9a15673f85d7b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9103382961040615631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 2294842309680879026, guid: c51de0c6845431c4bac4fe18a3cd9f45,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852536253483247215, guid: c51de0c6845431c4bac4fe18a3cd9f45,
         type: 3}
@@ -132,7 +144,12 @@ PrefabInstance:
     - target: {fileID: 5699743329143916669, guid: c51de0c6845431c4bac4fe18a3cd9f45,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772815116010122341, guid: c51de0c6845431c4bac4fe18a3cd9f45,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6203883782136986724, guid: c51de0c6845431c4bac4fe18a3cd9f45,
         type: 3}

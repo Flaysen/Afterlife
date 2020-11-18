@@ -488,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355891878275047500}
   m_LocalRotation: {x: 0, y: 0.052335896, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: 0.2, y: 0.507, z: 0.4}
+  m_LocalPosition: {x: 0.2, y: 0.507, z: 0.744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6355891879778868268}
@@ -531,7 +531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355891878782022301}
   m_LocalRotation: {x: 0, y: -0.10452837, z: 0, w: 0.9945219}
-  m_LocalPosition: {x: -0.3, y: 0.507, z: 0.3}
+  m_LocalPosition: {x: -0.3, y: 0.507, z: 0.64400005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6355891879778868268}
@@ -574,7 +574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355891878885318586}
   m_LocalRotation: {x: 0, y: -0.052335896, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: -0.2, y: 0.507, z: 0.4}
+  m_LocalPosition: {x: -0.2, y: 0.507, z: 0.744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6355891879778868268}
@@ -617,7 +617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355891878903655205}
   m_LocalRotation: {x: 0, y: 0.10452846, z: 0, w: 0.9945219}
-  m_LocalPosition: {x: 0.3, y: 0.507, z: 0.3}
+  m_LocalPosition: {x: 0.3, y: 0.507, z: 0.64400005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6355891879778868268}
@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355891879474784587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.507, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.507, z: 0.844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6355891879778868268}
@@ -696,6 +696,7 @@ GameObject:
   - component: {fileID: 6355891879778868277}
   - component: {fileID: 6355891879778868276}
   - component: {fileID: 6355891879778868279}
+  - component: {fileID: 7938266590216993009}
   m_Layer: 0
   m_Name: 'EnemyFatPrefab '
   m_TagString: Untagged
@@ -855,3 +856,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7938266590216993009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355891879778868278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fa8703281ced541bacabbdc4dae3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charPrefab: {fileID: 4759339301418403376}

@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 2797060884797634437}
   - component: {fileID: 1347094831095732069}
   - component: {fileID: 4109267427531663566}
+  - component: {fileID: 2090360071626535285}
   m_Layer: 0
   m_Name: EnemySkeletonWhite
   m_TagString: Untagged
@@ -348,6 +349,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2090360071626535285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147776694160456302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fa8703281ced541bacabbdc4dae3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charPrefab: {fileID: 6239003581690158300}
 --- !u!1 &5091325447991803922
 GameObject:
   m_ObjectHideFlags: 0

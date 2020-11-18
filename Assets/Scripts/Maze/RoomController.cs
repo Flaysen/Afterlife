@@ -9,8 +9,9 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-
+    [SerializeField] private GameObject _chestPrefab;
     public RoomType RoomType;
+    
     public List<Gate> gates = new List<Gate>();
 
     public List<EnemyHealthBehaviour> enemies = new List<EnemyHealthBehaviour>();
@@ -75,9 +76,11 @@ public class RoomController : MonoBehaviour
     {
         if(_isClosed == true)
         {
+            Transform enemyTransform = enemy.transform;
             enemies.Remove(enemy);
             if (enemies.Count == 0)
             {
+                SpawnChest(enemyTransform);
                 _isClear = true;
                 OnRoomCleared?.Invoke(this);
             }
@@ -92,5 +95,11 @@ public class RoomController : MonoBehaviour
             _isClosed = true;
             if(RoomType!= RoomType.ENTRY) OnRoomEntered?.Invoke(this);       
         }
-    }        
+    }      
+
+    private void SpawnChest(Transform spwanTransform)
+    {
+        
+        Instantiate(_chestPrefab, spwanTransform.position, Quaternion.identity, transform);
+    }  
 }
