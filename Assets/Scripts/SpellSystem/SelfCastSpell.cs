@@ -1,4 +1,3 @@
-using AfterlifeProject.Assets.Scripts.Core;
 using Core;
 using Projectiles;
 using Resource;

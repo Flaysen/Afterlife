@@ -1,41 +1,43 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+namespace Enemies
 {
-    private Dictionary<Type, BaseState> _availableStates;
-
-    public BaseState CurrentState { get; private set; }
-    public event Action<BaseState> OnStateChanged;
-
-    public void SetStates(Dictionary<Type, BaseState> states)
+    public class EnemyStateMachine : MonoBehaviour
     {
-        _availableStates = states;
-    }
-
-    private void Update()
-    {
-        if(CurrentState == null)
+        private Dictionary<Type, BaseState> _availableStates;
+        public event Action<BaseState> OnStateChanged;
+        public BaseState CurrentState { get; private set; }
+        
+        public void SetStates(Dictionary<Type, BaseState> states)
         {
-            CurrentState = _availableStates.Values.First();
+            _availableStates = states;
         }
-
-        var nextState = CurrentState?.Tick();
-
-        if(nextState != null &&
-            nextState != CurrentState?.GetType())
+        private void Update()
         {
-            SwitchToNewState(nextState);
-        }
-    }
+            if(CurrentState == null)
+            {
+                CurrentState = _availableStates.Values.First();
+            }
 
-    private void SwitchToNewState(Type nextState)
-    {
-        CurrentState = _availableStates[nextState];
-        OnStateChanged?.Invoke(CurrentState);
+            var nextState = CurrentState?.StateUpdate();
+
+            if(nextState != null &&
+                nextState != CurrentState?.GetType())
+            {
+                SwitchToNewState(nextState);
+            }
+        }
+        private void SwitchToNewState(Type nextState)
+        {
+            CurrentState = _availableStates[nextState];
+            OnStateChanged?.Invoke(CurrentState);
+        }
     }
 }
+
+
 

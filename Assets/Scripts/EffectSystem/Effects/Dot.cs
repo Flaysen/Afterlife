@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using Resource;
 
-[CreateAssetMenu(fileName = "dot", menuName = "Effects/Dot", order = 55)]
-public class Dot : Effect
+namespace Effects
 {
-    [SerializeField] private float _damage;
-
-    public override void Tick(Transform target)
+    [CreateAssetMenu(fileName = "dot", menuName = "Effects/Dot", order = 55)]
+    public class Dot : Effect
     {
-        IDamagable damagable = target.GetComponent<IDamagable>();
+        [SerializeField] private float _damage;
 
-        if(damagable != null)
+        public override void Tick(Transform target)
         {
-            damagable.TakeDamage(_damage);
+            IDamagable damagable = target.GetComponent<IDamagable>();
 
-            PlayParticles(target);
+            if(damagable != null)
+            {
+                damagable.TakeDamage(_damage);
+
+                PlayParticles(target);
+            }       
         }
-      
     }
 }
+
+

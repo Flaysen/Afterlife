@@ -8,16 +8,13 @@ namespace Stats
     {
         [SerializeField] private BaseStats _baseStats;
         private Dictionary<Stat, StatData> Stats = new Dictionary<Stat, StatData>();
-
         public List<SpellBehaviour> ProjectileModifiers = new List<SpellBehaviour>();
-
         public BaseStats BaseStats => _baseStats;
 
         private void Awake()
         {
             InitializeStatsDirectory();
         }
-
         private void InitializeStatsDirectory()
         {            
             foreach (var stat in _baseStats.Stats)
@@ -25,7 +22,6 @@ namespace Stats
                 Stats.Add(stat.StatType, new StatData(stat.Value));
             }
         }        
-
         public float GetStatValue(StatType statType)
         {
             foreach (KeyValuePair<Stat, StatData> stat in Stats)
@@ -37,7 +33,6 @@ namespace Stats
             }
             return 0;
         }
-
         public void RemoveStatMod(IStatModifier modifier)
         {
             foreach (StatModifier mod in modifier.StatModifiers)
@@ -51,7 +46,6 @@ namespace Stats
                 }
             }
         }
-
         public void AddStatMod(IStatModifier modifier)
         {          
             foreach (StatModifier mod in modifier.StatModifiers)
@@ -65,7 +59,6 @@ namespace Stats
                 }
             }
         }
-
         public void AddProjectileMod(IProjectileBehaviourModifier modifier)
         {
             if(modifier.ProjectileBehaviourModifiers != null)
@@ -76,11 +69,5 @@ namespace Stats
                 }         
             }
         }
-
-        public void RemoveProjectileMod(IProjectileBehaviourModifier modifier)
-        {
-           Debug.Log("Remove"); 
-        }
-
     }
 }

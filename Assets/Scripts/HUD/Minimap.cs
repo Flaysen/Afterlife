@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Afterlife.Assets.WorldGeneration.Scripts;
 using LevelGeneration;
+using Maze;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,6 @@ public class Minimap : MonoBehaviour
     private void Awake()
     {
         _mazeGenerator = FindObjectOfType<MazeGenerator>();
-
         _lastPosition = transform.localPosition;
     }
 
@@ -29,12 +29,9 @@ public class Minimap : MonoBehaviour
         Vector2 roomPosition = new Vector2(roomController.transform.position.x, roomController.transform.position.z) * _mapScaling;
 
         GameObject image = Instantiate(_roomImageSlot, Vector3.zero, Quaternion.identity, transform);
-
         image.transform.localPosition = roomPosition;
-
         _roomsDictionary.Add(roomController, image);
-
-        roomController.OnRoomEntered += ChangeRoomColor; 
+        roomController.OnRoomEntered += SetRoomColors; 
     }
 
     public void ResetMinimap()
@@ -45,7 +42,7 @@ public class Minimap : MonoBehaviour
         }
     }
 
-    private void ChangeRoomColor(RoomController roomController)
+    private void SetRoomColors(RoomController roomController)
     {
         Vector2 newPosition = Vector2.zero;
         GameObject newRoomSlot = null;
@@ -60,19 +57,16 @@ public class Minimap : MonoBehaviour
                 kvp.Value.transform.GetChild(0).GetComponent<Image>().color = _roomColor;
             }
 
-            if(kvp.Key.RoomType == RoomType.EXIT)
-            {
-                kvp.Value.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
-            }
+            // if(kvp.Key.RoomType == RoomType.EXIT)
+            // {
+            //     kvp.Value.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
+            // }
         }
-
         if(_lastRoomSlot)
         {
             _lastRoomSlot.transform.GetChild(0).GetComponent<Image>().color = _roomColor * 2;
         }
-
-        
-         
+ 
         MoveMap(roomController, newPosition);
 
         _lastPosition = newPosition;

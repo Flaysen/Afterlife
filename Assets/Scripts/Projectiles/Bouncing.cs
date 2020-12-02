@@ -15,7 +15,6 @@ namespace Projectiles
         {
             Bounce(projectile, speed);
         }
-
         private void Bounce(IProjectile projectile, float speed)
         {
             Ray ray = new Ray(projectile.Transform.position, projectile.Transform.forward);

@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Stats;
 using UnityEngine;
 
-public abstract class BaseState 
+namespace Core
 {
-    protected GameObject gameObject;
-    protected Transform transform;
-
-    public BaseState(GameObject gameObject)
+    public abstract class BaseState 
     {
-        this.gameObject = gameObject;
-        transform = gameObject.transform;
-       
+        protected GameObject _gameObject;
+        protected Transform _transform;
+
+        public BaseState(GameObject gameObject)
+        {
+            _gameObject = gameObject;
+            _transform = gameObject.transform;
+        
+        }
+        public abstract Type StateUpdate();
     }
-    public abstract Type Tick();
 }
+
+

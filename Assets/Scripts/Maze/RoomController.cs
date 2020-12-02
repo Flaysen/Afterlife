@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Afterlife.Assets.WorldGeneration.Scripts;
 using Combat;
@@ -7,99 +6,69 @@ using Core;
 using PlayerControl;
 using UnityEngine;
 
-public class RoomController : MonoBehaviour
+namespace Maze 
 {
-    [SerializeField] private GameObject _chestPrefab;
-    public RoomType RoomType;
-    
-    public List<Gate> gates = new List<Gate>();
-
-    public List<EnemyHealthBehaviour> enemies = new List<EnemyHealthBehaviour>();
-
-    private Minimap _minimap;
-
-    private EnemiesSpawner _enemiesSpawner;
-
-    private TriggerOverlap _triggerOverlap;
-
-    public event Action<RoomController> OnRoomEntered;
-
-    public event Action<RoomController> OnRoomCleared;
-
-    public event Action<RoomController> OnRoomSpawn;
-
-    public static event Action OnEnter;
-
-    private bool _isClosed;
-
-    private bool _isClear;
-
-    private void Awake()
-    { 
-        InitializeGates();
-        //InitializeSpawners();
-
-        _enemiesSpawner = GetComponent<EnemiesSpawner>();
-
-        _triggerOverlap = GetComponent<TriggerOverlap>();
-
-        _minimap = FindObjectOfType<Minimap>();
-        
-        EnemyHealthBehaviour.OnEnemyDeath += RemoveEnemy;
-
-        _minimap.RegisterRoom(this);
-    }
-
-    private void Start()
+    public class RoomController : MonoBehaviour
     {
-        _triggerOverlap.OnTrigger += RoomEntered;
-    }
-
-    private void InitializeGates()
-    {
-        foreach(Gate gate in GetComponentsInChildren<Gate>())
-        {
-            gates.Add(gate);
-            gate.Initialize(this);
+        public RoomType RoomType  { get; set; }
+        public List<Gate> Gates = new List<Gate>();
+        public List<EnemyHealthBehaviour> Enemies = new List<EnemyHealthBehaviour>();
+        public event Action<RoomController> OnRoomEntered;
+        public event Action<RoomController> OnRoomCleared;
+        public event Action<Transform> OnLastEnemyKilled;
+        public event Action<RoomController> OnRoomSpawn;
+        public static event Action OnEnter;
+        private Minimap _minimap;
+        private EnemiesSpawner _enemiesSpawner;
+        private TriggerOverlap _triggerOverlap;
+        private ChestSpawner _chestSpawner;
+        private bool _isClosed;
+        private bool _isClear;
+        private void Awake()
+        { 
+            InitializeGates();
+            _enemiesSpawner = GetComponent<EnemiesSpawner>();
+            _triggerOverlap = GetComponent<TriggerOverlap>();
+            _minimap = FindObjectOfType<Minimap>();
+            EnemyHealthBehaviour.OnEnemyDeath += RemoveEnemy;
+            _minimap.RegisterRoom(this);
         }
-    }
-
-    private void InitializeSpawners()
-    {
-        foreach(EnemiesSpawner spawner in GetComponentsInChildren<EnemiesSpawner>())
+        private void Start()
         {
-            //spawner.Initialize(this);
+            _triggerOverlap.OnTrigger += RoomEntered;          
         }
-    }
-
-    private void RemoveEnemy(EnemyHealthBehaviour enemy)
-    {
-        if(_isClosed == true)
+        private void InitializeGates()
         {
-            Transform enemyTransform = enemy.transform;
-            enemies.Remove(enemy);
-            if (enemies.Count == 0)
+            foreach(Gate gate in GetComponentsInChildren<Gate>())
             {
-                SpawnChest(enemyTransform);
-                _isClear = true;
-                OnRoomCleared?.Invoke(this);
+                Gates.Add(gate);
+                gate.Initialize(this);
+            }
+        }
+        private void RemoveEnemy(EnemyHealthBehaviour enemy)
+        {
+            if(_isClosed == true)
+            {
+                Transform enemyTransform = enemy.transform;
+                Enemies.Remove(enemy);
+                if (Enemies.Count == 0 && _isClear == false)
+                {                  
+                    _isClear = true;
+                    OnLastEnemyKilled?.Invoke(enemyTransform);
+                    OnRoomCleared?.Invoke(this);
+                }
+            }      
+        }
+        public void RoomEntered(Collider collider)
+        {
+            Debug.Log("Enter");
+            PlayerController player = collider.GetComponent<PlayerController>();
+            if(player)
+            {
+                _isClosed = true;
+                if(RoomType!= RoomType.ENTRY) OnRoomEntered?.Invoke(this);       
             }
         }      
     }
-
-    public void RoomEntered(Collider collider)
-    {
-        PlayerController player = collider.GetComponent<PlayerController>();
-        if(player)
-        {
-            _isClosed = true;
-            if(RoomType!= RoomType.ENTRY) OnRoomEntered?.Invoke(this);       
-        }
-    }      
-
-    private void SpawnChest(Transform spwanTransform)
-    {
-        
-        Instantiate(_chestPrefab, spwanTransform.position, Quaternion.identity, transform);
-    }  
 }
+

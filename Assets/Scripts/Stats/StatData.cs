@@ -6,12 +6,9 @@ namespace Stats
     public class StatData
     {
         private readonly List<StatModifier> _statModifiers = new List<StatModifier>();
-
         private readonly float _baseValue = 0f;
         private bool _isDirty = true;
-
         private float _value;
-
         public float Value
         {
             get
@@ -21,15 +18,11 @@ namespace Stats
                     _value = CalculateValue();
                     _isDirty = false;
                 }
-
                 return _value;
             }
         }
-
         public StatData(float initialValue) => _baseValue = initialValue;
-
         public StatData(Stat statType) => _baseValue = statType.InitialValue;
-
         public void AddModifier(StatModifier statModifier)
         {
             _isDirty = true;
@@ -39,13 +32,11 @@ namespace Stats
             _statModifiers.Insert(index, statModifier);
 
         }
-
         public void RemoveModifier(StatModifier statModifier)
         {
             _isDirty = true;
             _statModifiers.Remove(statModifier);
         }
-
         protected virtual float CalculateValue()
         {
             float finalValue = _baseValue;

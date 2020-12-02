@@ -1,34 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core;
+﻿using Core;
+using GameManagement;
 using UnityEngine;
 
-public class MazeExit : MonoBehaviour
+namespace Maze
 {
-    private TriggerOverlap _triggerOverlap;
-    private LevelManager _levelManager;
-
-    private void Awake()
+    [RequireComponent(typeof(TriggerOverlap))]
+    public class MazeExit : MonoBehaviour
     {
-        _triggerOverlap = GetComponent<TriggerOverlap>();
-        _triggerOverlap.OnTrigger += ExitLevel; 
+        private TriggerOverlap _triggerOverlap;
+        private LevelManager _levelManager;
 
-        _levelManager = FindObjectOfType<LevelManager>(); 
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.O))
+        private void Awake()
         {
-            _levelManager.NextLevel();
+            _triggerOverlap = GetComponent<TriggerOverlap>();
+            _triggerOverlap.OnTrigger += ExitLevel; 
+
+            _levelManager = FindObjectOfType<LevelManager>(); 
         }
-    }
-
-    private void ExitLevel(Collider collider)
-    {
-        if(collider.CompareTag("Player"))
+        private void Update()
         {
-            _levelManager.NextLevel();
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                _levelManager.NextLevel();
+            }
+        }
+        private void ExitLevel(Collider collider)
+        {
+            if(collider.CompareTag("Player"))
+            {
+                _levelManager.NextLevel();
+            }
         }
     }
 }
+
+

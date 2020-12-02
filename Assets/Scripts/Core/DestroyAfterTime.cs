@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AfterlifeProject.Assets.Scripts.Core
+namespace Core
 {
     public class DestroyAfterTime : MonoBehaviour
     {    
@@ -13,7 +13,6 @@ namespace AfterlifeProject.Assets.Scripts.Core
                 Destroy(this.gameObject, _time);
             }   
         }
-
         public void StartTimer(float time)
         {
             Destroy(this.gameObject, time);

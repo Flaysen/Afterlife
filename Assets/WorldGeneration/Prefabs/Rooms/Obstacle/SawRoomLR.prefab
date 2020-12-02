@@ -128,7 +128,7 @@ Transform:
   - {fileID: 2585566208790740497}
   - {fileID: 1523606905459965149}
   m_Father: {fileID: 8445443541203905872}
-  m_RootOrder: 13
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554120854440872668
 GameObject:
@@ -222,7 +222,7 @@ Transform:
   - {fileID: 3349388132430595957}
   - {fileID: 1782964131529426361}
   m_Father: {fileID: 8445443541203905872}
-  m_RootOrder: 14
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5817351804095803075
 GameObject:
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1 &6710872118341228455
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1 &7260657738005547582
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: d0f8d2652bd18484a8e3efc5739f2367,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d0f8d2652bd18484a8e3efc5739f2367,
         type: 3}
@@ -1003,7 +1003,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: d0f8d2652bd18484a8e3efc5739f2367,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.208
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d0f8d2652bd18484a8e3efc5739f2367,
         type: 3}
@@ -1409,14 +1409,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: SawRoomLR
       objectReference: {fileID: 0}
+    - target: {fileID: 5195860350266008926, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803400564556881814, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8001909447196869742, guid: e261629a43e29354fa61da0591d4c316,
         type: 3}
       propertyPath: RoomType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8001909447196869742, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727027035429585523, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: -8928089482459359879, guid: e261629a43e29354fa61da0591d4c316, type: 3}
-    - {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e261629a43e29354fa61da0591d4c316, type: 3}
 --- !u!4 &8445443541203905872 stripped
 Transform:

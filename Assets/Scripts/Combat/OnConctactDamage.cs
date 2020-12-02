@@ -1,27 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core;
+﻿using Core;
 using Resource;
 using UnityEngine;
 
-[RequireComponent(typeof(TriggerOverlap))]
-public class OnConctactDamage : MonoBehaviour
+namespace Combat
 {
-    private TriggerOverlap _triggerOverlap;
-
-    private void Awake()
+    [RequireComponent(typeof(TriggerOverlap))]
+    public class OnConctactDamage : MonoBehaviour
     {
-        _triggerOverlap = GetComponent<TriggerOverlap>();
-        _triggerOverlap.OnTrigger += DamagePlayer;    
-    }
+        private TriggerOverlap _triggerOverlap;
 
-    private void DamagePlayer(Collider collider)
-    {
-        PlayerHealthBehaviour player = collider.GetComponent<PlayerHealthBehaviour>();
-
-        if(player)
+        private void Awake()
         {
-            player.TakeDamage(1);
+            _triggerOverlap = GetComponent<TriggerOverlap>();
+            _triggerOverlap.OnTrigger += DamagePlayer;    
+        }
+        private void DamagePlayer(Collider collider)
+        {
+            PlayerHealthBehaviour player = collider.GetComponent<PlayerHealthBehaviour>();
+
+            if(player)
+            {
+                player.TakeDamage(1);
+            }
         }
     }
 }
+
+

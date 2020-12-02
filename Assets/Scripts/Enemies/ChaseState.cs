@@ -1,49 +1,44 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Core;
 using Enemies;
 using Stats;
-using UnityEngine;
-using UnityEngine.AI;
 
-public class ChaseState : BaseState
+namespace Enemies
 {
-    private EnemyController _enemyController;
-    private StatsBehaviour _statBehaviour;
-    private float _speed;
-    private float _awareness; 
-
-    public ChaseState(EnemyController monster) : base(monster.gameObject)
+    public class ChaseState : BaseState
     {
-        _enemyController = monster;
+        private EnemyController _enemyController;
+        private StatsBehaviour _statBehaviour;
+        private float _speed;
+        private float _awareness; 
 
-        _statBehaviour = _enemyController.GetComponent<StatsBehaviour>();
-    }
-
-    public override Type Tick()
-    {       
-        _enemyController.Agent.speed = _statBehaviour.GetStatValue(StatType.Speed);
-
-        _enemyController.Agent.stoppingDistance = _statBehaviour.GetStatValue(StatType.AttackRange); 
-
-        if(!_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.Awareness)))
+        public ChaseState(EnemyController monster) : base(monster.gameObject)
         {
-            return typeof(WanderState);
+            _enemyController = monster;
+            _statBehaviour = _enemyController.GetComponent<StatsBehaviour>();
         }
+        public override Type StateUpdate()
+        {       
+            _enemyController.Agent.speed = _statBehaviour.GetStatValue(StatType.Speed);
+            _enemyController.Agent.stoppingDistance = _statBehaviour.GetStatValue(StatType.AttackRange); 
 
-        if(_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.AttackRange)))
+            if(!_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.Awareness)))
+            {
+                return typeof(WanderState);
+            }
+
+            if(_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.AttackRange)))
+            {
+                return typeof(CombatState);
+            }
+
+            FallowPlayer();
+            return null;
+        }
+        public void FallowPlayer()
         {
-            return typeof(CombatState);
+            _enemyController.Agent.SetDestination(_enemyController.Player.transform.position);
         }
-
-        FallowPlayer();
-
-        return null;
-    }
-
-    public void FallowPlayer()
-    {
-        _enemyController.Agent.SetDestination(_enemyController.Player.transform.position);
-        //_enemyController.Animator.SetFloat("Speed", 1);
     }
 }
+

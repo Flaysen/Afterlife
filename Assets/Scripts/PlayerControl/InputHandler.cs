@@ -29,14 +29,12 @@ namespace PlayerControl
 
             GetKeyboardInput();
         }
-
         private void GetMouseInput()
         {
             MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
             MousePoisition = Input.mousePosition;
         }
-
         private void GetKeyboardInput()
         {
             if (Input.GetKey(_fireButton) && !EventSystem.current.IsPointerOverGameObject()) OnAttackTrigger?.Invoke();
@@ -47,15 +45,7 @@ namespace PlayerControl
 
             IsJumpButtonPressed = Input.GetKeyDown(_jumpButton) ? true : false;
 
-            IsDashButtonPressed = (Input.GetKeyDown(_dashButton)) ? true : false;
-
-            for (int i = 0; i < _spellCastButtons.Length; i++)
-            {
-                if (Input.GetKeyDown(_spellCastButtons[i]))
-                {
-                    OnAnySpellCast?.Invoke(i + 1);
-                }
-            }
+            IsDashButtonPressed = (Input.GetKeyDown(_dashButton)) ? true : false;        
         }
     }
 }

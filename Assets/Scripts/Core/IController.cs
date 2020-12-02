@@ -1,5 +1,8 @@
-﻿
-public interface IController
-{   
-    bool IsControlDisabled { get; set; }
+﻿namespace Core 
+{
+    public interface IController
+    {   
+        bool IsControlDisabled { get; set; }
+    }
 }
+

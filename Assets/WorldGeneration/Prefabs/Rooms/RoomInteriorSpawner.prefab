@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2631573433789541087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3590114069423421242}
+  - component: {fileID: 2217401298147372078}
+  m_Layer: 0
+  m_Name: RoomInteriorSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3590114069423421242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631573433789541087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2217401298147372078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631573433789541087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5db17ac4c92c641970031e2ab498e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pattern: {fileID: 2800000, guid: d007124e554bfda479326413d0cd3007, type: 3}
+  _patterns:
+  - {fileID: 2800000, guid: d007124e554bfda479326413d0cd3007, type: 3}
+  - {fileID: 2800000, guid: 3b09a883d42834e42a99f5ce4561baf0, type: 3}
+  - {fileID: 2800000, guid: 86dcfcb3bc006234fac1c2276ffc318f, type: 3}
+  - {fileID: 2800000, guid: 15598e1b661b2c94d8097d6408bff35f, type: 3}
+  - {fileID: 2800000, guid: 1bbbd4fabea20a04cb1de6ed13f79a44, type: 3}
+  - {fileID: 2800000, guid: d969e4fae8422b64ea289b1ff13b3399, type: 3}
+  - {fileID: 2800000, guid: a6d78521ad242ca4d99b9ec0f3aac4aa, type: 3}
+  - {fileID: 2800000, guid: e97eacaa897597f48acfb416f1bd8323, type: 3}
+  - {fileID: 2800000, guid: c2ddd85ca7d620a48b880766ae54bbb7, type: 3}
+  - {fileID: 2800000, guid: 85bc5070ffbb5e2428c9c233297def0d, type: 3}
+  _objectFromPattern:
+  - name: Spawners
+    color: {r: 1, g: 1, b: 0, a: 1}
+    prefabs:
+    - {fileID: 3169824532322335520, guid: 9775339f97b5c7140ad4c0981e7af40a, type: 3}
+  - name: Destroyables
+    color: {r: 0.53333336, g: 0, b: 0.08235294, a: 1}
+    prefabs:
+    - {fileID: 7309785606907548604, guid: efa32729d998ccb4e952af5cc3e945af, type: 3}
+    - {fileID: 7317340232615126404, guid: e9c5fb34d9c0e404b998d7a88ec1c6d5, type: 3}
+    - {fileID: 6976325851884840255, guid: 86002510320ac004a9a47d1aa60083cf, type: 3}
+  - name: Obstacles
+    color: {r: 0, g: 0, b: 0, a: 1}
+    prefabs:
+    - {fileID: 6447971214489765660, guid: 68fd965d92717644187d3151d52ee087, type: 3}
+    - {fileID: 3742840351926595402, guid: 59be8c51adb986b4cb00db9b00ebf8d3, type: 3}
+    - {fileID: 1768814360554415198, guid: 9aa84079cc847e447b5bf90c333f0d4b, type: 3}
+    - {fileID: 1768814360554415198, guid: 9aa84079cc847e447b5bf90c333f0d4b, type: 3}
+    - {fileID: 1218785887975644799, guid: 0b1801f1fd59f1e4daee81da03dcb179, type: 3}
+    - {fileID: 7405526999803707374, guid: 011d9339b3d8ea24cbdde2e667d514a8, type: 3}
+    - {fileID: 7356970029756405508, guid: 9b4e46b063365324fb70c3051c813eeb, type: 3}
+    - {fileID: 7651023576887117690, guid: ce99f069b86cbed4585699f335086247, type: 3}
+    - {fileID: 6447971214489765660, guid: 68fd965d92717644187d3151d52ee087, type: 3}
+    - {fileID: 3742840351926595402, guid: 59be8c51adb986b4cb00db9b00ebf8d3, type: 3}
+    - {fileID: 1768814360554415198, guid: 9aa84079cc847e447b5bf90c333f0d4b, type: 3}
+  - name: WallsH
+    color: {r: 0.24705884, g: 0.28235295, b: 0.8000001, a: 1}
+    prefabs:
+    - {fileID: 1008673566514712090, guid: 27168f9334cdd27479449f2e1088f95e, type: 3}
+    - {fileID: 4056010909839422575, guid: 03fd5e8bf538c484ab3bc27eefaca6c6, type: 3}
+    - {fileID: 5213559537069849514, guid: 298af510e0d086242af351bdcdeb7f9c, type: 3}
+  - name: WallsV
+    color: {r: 0.6392157, g: 0.28627452, b: 0.6431373, a: 1}
+    prefabs:
+    - {fileID: 8768980050150878311, guid: a15cf0a2d12002845afe78ff438e8431, type: 3}
+    - {fileID: 1569611382701604755, guid: 8b903bf6f5e0594429228929e6997cf6, type: 3}
+    - {fileID: 8273030640038916696, guid: 8ffef6f78f469c74aa3176476f201462, type: 3}
+  _wallsH:
+    serializedVersion: 2
+    rgba: 4291577919
+  _wallsV:
+    serializedVersion: 2
+    rgba: 4288956835

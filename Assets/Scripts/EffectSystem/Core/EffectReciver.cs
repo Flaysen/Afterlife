@@ -2,37 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectReciver : MonoBehaviour
+namespace Effects
 {
-    [SerializeField] private List<Effect> _effects = new List<Effect>();
-
-    public void AddEffect(Effect effect)
+    public class EffectReciver : MonoBehaviour
     {
-        _effects.Add(effect);
-        StartCoroutine(ProceedEffect(effect));       
-    }
+        [SerializeField] private List<Effect> _effects = new List<Effect>();
 
-    public void RemoveEffect(Effect effect)
-    {
-         StopCoroutine(ProceedEffect(effect));
-        _effects.Remove(effect);
-    }
-
-    private void CancelAllEffects() => StopAllCoroutines();
-
-    private IEnumerator ProceedEffect(Effect effect)
-    {
-        effect.BeginEffect(transform);
-
-        for (int i = 0; i <= effect.PeriodsCount; i++)
+        public void AddEffect(Effect effect)
         {
-            effect.Tick(transform);
-            yield return new WaitForSeconds(effect.PeriodTime);
-            i++;
+            _effects.Add(effect);
+            StartCoroutine(ProceedEffect(effect));       
         }
-        
-        effect.EndEffect(transform);
+        public void RemoveEffect(Effect effect)
+        {
+            StopCoroutine(ProceedEffect(effect));
+            _effects.Remove(effect);
+        }
+        private IEnumerator ProceedEffect(Effect effect)
+        {
+            effect.BeginEffect(transform);
 
-        RemoveEffect(effect);
+            for (int i = 0; i <= effect.PeriodsCount; i++)
+            {
+                effect.Tick(transform);
+                yield return new WaitForSeconds(effect.PeriodTime);
+                i++;
+            }
+            effect.EndEffect(transform);
+            RemoveEffect(effect);
+        }
     }
 }
+
+

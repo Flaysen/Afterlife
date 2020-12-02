@@ -127,7 +127,7 @@ Transform:
   - {fileID: 1233906894140420939}
   - {fileID: 2871749982058803591}
   m_Father: {fileID: 1273983099238057909}
-  m_RootOrder: 13
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2757672942387483431
 GameObject:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1 &8061372612327103229
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1 &8937227966468446317
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ Transform:
   - {fileID: 5628111074086858010}
   - {fileID: 8709442293437820886}
   m_Father: {fileID: 1273983099238057909}
-  m_RootOrder: 14
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1001 &491562362075774631
 PrefabInstance:
@@ -617,10 +617,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: SawRoomUD
       objectReference: {fileID: 0}
+    - target: {fileID: 5195860350266008926, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803400564556881814, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001909447196869742, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727027035429585523, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: -8928089482459359879, guid: e261629a43e29354fa61da0591d4c316, type: 3}
-    - {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316, type: 3}
-    - {fileID: 2504307346872955460, guid: e261629a43e29354fa61da0591d4c316, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e261629a43e29354fa61da0591d4c316, type: 3}
 --- !u!4 &1273983099238057909 stripped
 Transform:

@@ -8,7 +8,6 @@ namespace InventorySystem
     public class ItemFloatingText : MonoBehaviour
     {
         private TMP_Text _text;
-
         private Item _item;
 
         private void Awake()

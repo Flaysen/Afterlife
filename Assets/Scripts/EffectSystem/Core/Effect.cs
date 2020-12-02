@@ -1,34 +1,27 @@
 ﻿using UnityEngine;
 
-public abstract class Effect : ScriptableObject
+namespace Effects 
 {
-    [SerializeField] protected float _duration;
-
-    [SerializeField] private int _periodsCount;
-
-    [SerializeField] private GameObject _particles;
-
-    public float Duration => _duration;
-
-    public float PeriodsCount => _periodsCount;
-
-    public GameObject Particles => _particles;
-
-    public float PeriodTime => (int)(_duration / _periodsCount);
-    
-    public virtual void Tick(Transform target) {}
-
-    public virtual void BeginEffect(Transform target) {}
-
-    public virtual void EndEffect(Transform target) {}
-
-    protected void PlayParticles(Transform target)
+    public abstract class Effect : ScriptableObject
     {
-        GameObject particles = Instantiate(_particles, target.position, Quaternion.identity);
+        [SerializeField] protected float _duration;
+        [SerializeField] private int _periodsCount;
+        [SerializeField] private GameObject _particles;
 
-        particles.transform.parent = target;
+        public float Duration => _duration;
+        public float PeriodsCount => _periodsCount;
+        public GameObject Particles => _particles;
+        
+        public float PeriodTime => (int)(_duration / _periodsCount); 
+        public virtual void Tick(Transform target) {}
+        public virtual void BeginEffect(Transform target) {}
+        public virtual void EndEffect(Transform target) {}
 
-        Destroy(particles.gameObject, _duration);
+        protected void PlayParticles(Transform target)
+        {
+            GameObject particles = Instantiate(_particles, target.position, Quaternion.identity);
+            particles.transform.parent = target;
+            Destroy(particles.gameObject, _duration);
+        }
     }
-
 }

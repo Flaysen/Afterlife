@@ -10,8 +10,7 @@ namespace Core
         private void OnTriggerExit(Collider other)
         {
              OnExit?.Invoke(other);
-        }
-        
+        }       
     }
 }
 

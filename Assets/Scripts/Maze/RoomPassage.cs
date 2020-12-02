@@ -1,35 +1,34 @@
 ﻿using PlayerControl;
 using UnityEngine;
 
-public class RoomPassage : MonoBehaviour
+namespace Maze
 {
-    [SerializeField] private int _tpDistance;
-
-    private GameObject _mainCamera;
-
-    private RoomController _roomManager;
-
-    private void Awake()
+    public class RoomPassage : MonoBehaviour
     {
-        _mainCamera = GameObject.FindGameObjectWithTag("CameraRig");
-        _tpDistance = 22;
-    }
+        [SerializeField] private int _tpDistance = 22;
+        private GameObject _mainCamera;
+        private RoomController _roomManager;
 
-    public void Initialize(RoomController roomManager)
-    {
-        _roomManager = roomManager;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        PlayerController player = other.GetComponent<PlayerController>();
-
-        if(player)
+        private void Awake()
         {
-            Vector3 tpVector = this.transform.forward * _tpDistance;
-            other.transform.position += tpVector;
-            _mainCamera.transform.position += tpVector;
+            _mainCamera = GameObject.FindGameObjectWithTag("CameraRig");
         }
+        public void Initialize(RoomController roomManager)
+        {
+            _roomManager = roomManager;
+        }
+        void OnTriggerEnter(Collider other)
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+
+            if(player)
+            {
+                Vector3 tpVector = this.transform.forward * _tpDistance;
+                other.transform.position += tpVector;
+                _mainCamera.transform.position += tpVector;
+            }
+        } 
     }
-  
 }
+
+

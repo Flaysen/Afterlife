@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a02d8f6683805458d672f6fb804c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerOverlap: {fileID: 0}
-  _levelManager: {fileID: 0}
 --- !u!114 &97568447919983589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +161,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9141320371397906638}
-  - component: {fileID: 7019429872321416004}
   - component: {fileID: 756452538779376211}
   - component: {fileID: 3958627553789276610}
   - component: {fileID: 5166224635026697337}
@@ -210,19 +207,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7019429872321416004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9141320371397906633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b70e4029467c447afa2103ded4e469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemiesPrefabs: []
 --- !u!114 &756452538779376211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,9 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1512f4348ae2240a18e7c8856093a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomType: 0
-  gates: []
-  enemies: []
+  Gates: []
+  Enemies: []
 --- !u!65 &3958627553789276610
 BoxCollider:
   m_ObjectHideFlags: 0

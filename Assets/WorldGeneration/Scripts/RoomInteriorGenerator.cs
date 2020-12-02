@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using UnityEngine;
 
 public class RoomInteriorGenerator : MonoBehaviour
 {
-    public Texture2D pattern;
-
-    [SerializeField] private Texture2D[] patterns;
-   
-    [SerializeField] private ObjectFromPattern[] mappings;
-
-    [SerializeField] private Color32 wallsH;
-
-    [SerializeField] private Color32 wallsV;
+    [SerializeField] private Texture2D _pattern;
+    [SerializeField] private Texture2D[] _patterns;
+    [SerializeField] private ObjectFromPattern[] _objectFromPattern;
+    [SerializeField] private Color32 _wallsH;
+    [SerializeField] private Color32 _wallsV;
 
     private void Start()
     {
-        pattern = patterns[UnityEngine.Random.Range(0, patterns.Length)];
-        GenerateRoomTiles(RandomPatternOrientation(pattern));
+        _pattern = _patterns[UnityEngine.Random.Range(0, _patterns.Length)];
+        GenerateRoomTiles(RandomPatternOrientation(_pattern));
     }
-
     private void GenerateRoomTiles(Texture2D pattern)
     {
         for (int x = 0; x < pattern.width; x++)
@@ -41,7 +32,7 @@ public class RoomInteriorGenerator : MonoBehaviour
             return;
         }
      
-        foreach (ObjectFromPattern mapping in mappings)
+        foreach (ObjectFromPattern mapping in _objectFromPattern)
         {           
             if (mapping.color.Equals(pixelColor))
             {
@@ -52,7 +43,6 @@ public class RoomInteriorGenerator : MonoBehaviour
             }
         }
     }
-
     private Vector3 PositionFromTileGrid(int x, int y, Texture2D pattern)
     {
         int w = pattern.width;
@@ -60,7 +50,6 @@ public class RoomInteriorGenerator : MonoBehaviour
 
         return new Vector3(x - (w - 1)/2, 0, y - (h - 1)/2);
     }
-
     private Texture2D RandomPatternOrientation(Texture2D originalPattern)
     {
         int x = UnityEngine.Random.Range(0,5);
@@ -86,11 +75,8 @@ public class RoomInteriorGenerator : MonoBehaviour
         }
         return originalPattern;
     }
-
-
     private Texture2D RotateTexture(Texture2D originalTexture, bool clockwise)
     {
-   
         Color32[] original = originalTexture.GetPixels32();
         Color32[] rotated = new Color32[original.Length];
         int w = originalTexture.width;
@@ -98,16 +84,15 @@ public class RoomInteriorGenerator : MonoBehaviour
 
         for(int i = 0; i < original.Length; i++)
         {
-            if (original[i].Equals(wallsH))
+            if (original[i].Equals(_wallsH))
             {
-                original[i] = wallsV;
+                original[i] = _wallsV;
             }
-            else if (original[i].Equals(wallsV))
+            else if (original[i].Equals(_wallsV))
             {
-                original[i] = wallsH;
+                original[i] = _wallsH;
             }
         }
-
         int iRotated, iOriginal;
 
         for (int j = 0; j < h; ++j)
@@ -119,7 +104,6 @@ public class RoomInteriorGenerator : MonoBehaviour
                 rotated[iRotated] = original[iOriginal];
             }
         }
-
         Texture2D rotatedTexture = new Texture2D(h, w);
         rotatedTexture.SetPixels32(rotated);
         rotatedTexture.Apply();

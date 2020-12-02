@@ -3,7 +3,6 @@
 public class TrailReset : MonoBehaviour
 {
     private TrailRenderer _trailRenderer;
-
     private void Awake()
     {
         _trailRenderer = GetComponent<TrailRenderer>();
@@ -12,7 +11,6 @@ public class TrailReset : MonoBehaviour
     {
         _trailRenderer.enabled = true;    
     }
-
     private void OnDisable()
     {
         _trailRenderer.enabled = false;

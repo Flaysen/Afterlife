@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Projectiles;
+using Effects;
 
 [CreateAssetMenu(fileName = "on_hit_effect", menuName = "Projectile Modifiers/On Hit Effect", order = 53)]
 public class OnHitEffect : SpellBehaviour

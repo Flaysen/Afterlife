@@ -1,7 +1,7 @@
 using Resource;
 using UnityEngine;
 
-namespace AfterlifeProject.Assets.Scripts.EffectSystem.Effects
+namespace Effects
 {
     [CreateAssetMenu(fileName = "heal", menuName = "Effects/Heal", order = 56)]
     public class Heal : Effect

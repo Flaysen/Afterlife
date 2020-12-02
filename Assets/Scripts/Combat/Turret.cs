@@ -4,6 +4,6 @@ namespace Combat
 {
     public class Turret : MonoBehaviour
     {
-        public bool isActive {get; set;} = false;
+        public bool isActive { get; set; }
     }
 }

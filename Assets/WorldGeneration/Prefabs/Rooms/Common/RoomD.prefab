@@ -163,6 +163,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomD
       objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[4].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[4].color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[4].color.b
+      value: 0.038277626
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[0].color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[0].color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: mappings.Array.data[0].color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _objectFromPattern.Array.data[1].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _objectFromPattern.Array.data[2].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _objectFromPattern.Array.data[0].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _objectFromPattern.Array.data[4].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _wallsH.rgba
+      value: 4291577919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: _wallsV.rgba
+      value: 4288956835
+      objectReference: {fileID: 0}
     - target: {fileID: 5195860350266008926, guid: e261629a43e29354fa61da0591d4c316,
         type: 3}
       propertyPath: m_RootOrder

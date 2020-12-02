@@ -1,45 +1,31 @@
-﻿using Stats;
+﻿using Core;
+using Stats;
 using UnityEngine;
 
 namespace PlayerControl
 {
-    [RequireComponent(typeof(InputHandler), typeof(CharacterController))]
+    [RequireComponent(typeof(InputHandler), typeof(CharacterController),typeof(StatsBehaviour))]
     public class PlayerController : MonoBehaviour, IController
     {
         [SerializeField] private float _gravity = 20.0f;
-
         [SerializeField] private float _jumpUpForce = 4.0f;
-
         [SerializeField] private float _jumpForwardForce = 2.0f;
-
         [SerializeField] private float _dashForce = 6.0f;
-
         [SerializeField] private float _dashTime = 0.2f;
-
         [SerializeField] private Animator _animator;
 
         private Vector3 _moveVelocity;
-
         private Vector3 _moveDirection;
-
         private Vector3 _pointToLook;
-
         private bool _isControlCanceled;
-
         private float _recaptureControl;
-
         private float _nextDashTime;
-
         private Camera _mainCamera;
         
         private StatsBehaviour _statsBehaviour;
-
         private InputHandler _input;
-
         private CharacterController _characterController;
-
         public Vector3 PointToLook => _pointToLook;
-
         public bool IsControlDisabled { get; set; }
 
         private void Awake()
@@ -52,7 +38,6 @@ namespace PlayerControl
 
             _statsBehaviour = GetComponent<StatsBehaviour>();
         }
-
         private void Update()
         {
             if (Time.time > _recaptureControl)
@@ -71,8 +56,6 @@ namespace PlayerControl
                     }
                     else _animator.SetBool("IsJumping", false);
                        
-
-
                     if (_input.IsDashButtonPressed)
                     {
                         HandleDash();
@@ -80,17 +63,12 @@ namespace PlayerControl
                     }
                     else _animator.SetBool("IsDashing", false);            
                 }
-
                 HandleRotation();
             }
-        
             AddGravityForce();
-
             HandleMovement();
         }
-
         private void RecaptureControl() => _isControlCanceled = false;
-
         private void HandleJump()
         {
             if (CheckIfGrounded())
@@ -99,7 +77,6 @@ namespace PlayerControl
                 _moveVelocity += _jumpForwardForce * _input.MoveInput;                
             }
         }
-
         private void HandleDash()
         {
             if (CheckIfGrounded() && _input.MoveInput != Vector3.zero)
@@ -113,9 +90,7 @@ namespace PlayerControl
                 }
             }
         }
-
         private void AddGravityForce() => _moveVelocity.y -= _gravity * Time.deltaTime;
-
         private void HandleRotation()
         {
             Ray cameraRay = _mainCamera.ScreenPointToRay(_input.MousePoisition);
@@ -128,7 +103,6 @@ namespace PlayerControl
                 transform.LookAt(new Vector3(_pointToLook.x, transform.position.y, _pointToLook.z));
             }
         }
-
         private void CalculateMovement()
         {       
             _moveDirection = _input.MoveInput.normalized;
@@ -136,12 +110,10 @@ namespace PlayerControl
             if (_moveVelocity != Vector3.zero) _animator.SetFloat("Speed", 1);
             else _animator.SetFloat("Speed", 0);         
         }
-
         private void HandleMovement() 
         {
             _characterController.Move(_moveVelocity * Time.deltaTime);
         }
-
         private bool CheckIfGrounded()
         {
             Bounds bounds = _characterController.bounds;

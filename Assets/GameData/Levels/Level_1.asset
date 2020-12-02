@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b4e0abbe2f19d4c96d817a382071b6, type: 3}
   m_Name: Level_1
   m_EditorClassIdentifier: 
-  _mazeSize: {x: 3, y: 3}
+  _mazeSize: {x: 5, y: 4}
   _roomsCount: 20
   _obstacleRoomsCount: 2
+  _branching: 0.5

@@ -141,7 +141,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a5115a2437d4d0d468d714cbf6576bc4, type: 2}
-  - {fileID: 2100000, guid: 7e10f42a0f39c674f92f4be1c52debac, type: 2}
+  - {fileID: 2100000, guid: af83459627a5b8046bbd2fd033ba44ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticles: {fileID: 154900285457883937, guid: 5c13e8bacf94d2147ad2d9a216430156,
     type: 3}
+  _damageHighlight: {fileID: 0}
 --- !u!114 &1255164056023911982
 MonoBehaviour:
   m_ObjectHideFlags: 0

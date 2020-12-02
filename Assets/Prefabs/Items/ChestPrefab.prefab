@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cf5946907e4824698d28b40e5d6204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropCount: 1
+  dropCount: 2
   spawningSpeed: 1.5
   spawnArea: {fileID: 1916748373306523005}
   itemSpawnerPrefab: {fileID: 4689573883069932664, guid: a47136c970ff2684091c539abc58e826,
@@ -66,8 +66,7 @@ MonoBehaviour:
   equipmentDropChance: 100
   equipable:
     dropChance: 100
-    itemsToDrop:
-    - {fileID: 8599325742310612267, guid: 22ba33e0cda11f040bfad16b169758ac, type: 3}
+    itemsToDrop: []
   consumable:
     dropChance: 0
     itemsToDrop: []
@@ -117,7 +116,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 882a8d63df60add46ba1222606588c53,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 882a8d63df60add46ba1222606588c53,
         type: 3}
@@ -223,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 8632139282153560062, guid: ba2aef6136b05824d9c7cc4483593213,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.504
+      value: 0.108
       objectReference: {fileID: 0}
     - target: {fileID: 8632139282153560062, guid: ba2aef6136b05824d9c7cc4483593213,
         type: 3}

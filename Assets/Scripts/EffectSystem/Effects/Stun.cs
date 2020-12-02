@@ -1,23 +1,27 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "dot", menuName = "Effects/Stun", order = 55)]
-public class Stun : Effect
+namespace Effects
 {
-    private IController _controller;
-
-    public override void BeginEffect(Transform target)
+    [CreateAssetMenu(fileName = "dot", menuName = "Effects/Stun", order = 55)]
+    public class Stun : Effect
     {
-        _controller = target.GetComponent<IController>();
+        private IController _controller;
 
-        if(_controller != null)
+        public override void BeginEffect(Transform target)
         {
-            _controller.IsControlDisabled = true;
-            PlayParticles(target);
+            _controller = target.GetComponent<IController>();
+
+            if(_controller != null)
+            {
+                _controller.IsControlDisabled = true;
+                PlayParticles(target);
+            }
+        }
+        public override void EndEffect(Transform target)
+        {
+            _controller.IsControlDisabled = false;
         }
     }
-
-    public override void EndEffect(Transform target)
-    {
-        _controller.IsControlDisabled = false;
-    }
 }
+

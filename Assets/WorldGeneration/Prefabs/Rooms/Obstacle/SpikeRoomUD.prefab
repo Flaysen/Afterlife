@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1 &1800716427720172319
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ Transform:
   - {fileID: 3089775304459343464}
   - {fileID: 2027781913052091556}
   m_Father: {fileID: 3049140822358909590}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1985369075000961240
 GameObject:
@@ -365,7 +365,7 @@ Transform:
   - {fileID: 8495390607870806073}
   - {fileID: 4837013418930604789}
   m_Father: {fileID: 3049140822358909590}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &6062159707796553694
 GameObject:
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eaedc38e288e645848bc8ce8de5fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tpDistance: 20
+  _tpDistance: 22
 --- !u!1001 &457734237717635567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,9 +728,24 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7803400564556881814, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001909447196869742, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727027035429585523, guid: e261629a43e29354fa61da0591d4c316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3550672413762186604, guid: e261629a43e29354fa61da0591d4c316, type: 3}
-    - {fileID: -8928089482459359879, guid: e261629a43e29354fa61da0591d4c316, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e261629a43e29354fa61da0591d4c316, type: 3}
 --- !u!4 &3049140822358909590 stripped
 Transform:

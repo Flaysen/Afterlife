@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Afterlife.Assets.WorldGeneration.Scripts;
+using GameManagement;
 using UnityEngine;
 
 namespace LevelGeneration
@@ -53,31 +54,24 @@ namespace LevelGeneration
         private void GenerateRooms() 
         {
             _rooms = new Room[_gridX * 2, _gridY * 2];
-
             _takenPositions.Clear();
-
             _rooms[_gridX, _gridY] = new Room(Vector2.zero, RoomType.ENTRY);
-
             _takenPositions.Insert(0, Vector2.zero);
-
             Vector2 checkPos = Vector2.zero;
-        
-            float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
+            float randomCompare = LevelData.Branching, randomCompareStart = LevelData.Branching, randomCompareEnd = 0.01f;
 
             for(int i = 0; i < _fixedRoomsCount - 1; i++)
             {
                 float randomPerc = (i / (_fixedRoomsCount - 1));
-
                 randomCompare = Mathf.Lerp(randomCompareStart, randomCompareEnd, randomPerc);
-
-                checkPos = NewPosition(false);
+                checkPos = NewRoomPosition(false);
 
                 if (GetNeighbors(checkPos, _takenPositions).Length > 1 && UnityEngine.Random.value > randomCompare)
                 {
                     int j = 0;
                     do
                     {
-                        checkPos = NewPosition(true);
+                        checkPos = NewRoomPosition(true);
                         j++;
                     } while (GetNeighbors(checkPos, _takenPositions).Length > 1 && j < 100);
                 }
@@ -87,7 +81,7 @@ namespace LevelGeneration
             }      
         }
 
-        private Vector2 NewPosition(bool lookForOneNeighbor)
+        private Vector2 NewRoomPosition(bool lookForOneNeighbor)
         {
             int x = 0, y = 0;
             int i = 0;
@@ -106,16 +100,11 @@ namespace LevelGeneration
                     } while (GetNeighbors(_takenPositions[i], _takenPositions).Length > 1 && attempts < 100);
                 }
                 else i = Mathf.RoundToInt(UnityEngine.Random.value * (_takenPositions.Count - 1));
-               
                 x = (int)_takenPositions[i].x;
                 y = (int)_takenPositions[i].y;
-
                 checkingPos = (UnityEngine.Random.value < 0.5f) ?
-
                      (UnityEngine.Random.value < 0.5f) ? new Vector2(x, y + 1) : new Vector2(x, y - 1) :
-
                      (UnityEngine.Random.value < 0.5f) ? new Vector2(x + 1, y) : new Vector2(x - 1, y);
-
             } while (_takenPositions.Contains(checkingPos) || checkingPos.x >= _gridX || checkingPos.x < -_gridX || checkingPos.y >= _gridY || checkingPos.y < -_gridY);
            
             return checkingPos;
@@ -126,11 +115,8 @@ namespace LevelGeneration
             List<Vector2> positions = new List<Vector2>();
 
             if (usedPositions.Contains(checkingPos + Vector2.right)) positions.Add(checkingPos + Vector2.right);
-        
             if (usedPositions.Contains(checkingPos + Vector2.left)) positions.Add(checkingPos + Vector2.left);
-         
             if (usedPositions.Contains(checkingPos + Vector2.up))  positions.Add(checkingPos + Vector2.up);
-          
             if (usedPositions.Contains(checkingPos + Vector2.down))  positions.Add(checkingPos + Vector2.down);
         
             return positions.ToArray();
@@ -145,13 +131,9 @@ namespace LevelGeneration
                     if(_rooms[x, y] == null) continue;
 
                     Vector2 gridPosition = new Vector2(x, y);
-
                     _rooms[x, y].DoorBot = (y - 1 < 0) ? false : _rooms[x, y - 1] != null;
-
                     _rooms[x, y].DoorTop = (y + 1 >= _gridY * 2) ? false : _rooms[x, y + 1] != null;
-
                     _rooms[x, y].DoorLeft = (x - 1 < 0) ? false : _rooms[x - 1, y] != null;
-
                     _rooms[x, y].DoorRight = (x + 1 >= _gridX * 2) ? false : _rooms[x + 1, y] != null;
                 }   
             }

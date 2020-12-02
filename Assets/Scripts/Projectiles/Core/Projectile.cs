@@ -4,7 +4,6 @@ using UnityEngine;
 using Core;
 using Stats;
 using Resource;
-using AfterlifeProject.Assets.Scripts.Core;
 
 namespace Projectiles
 {

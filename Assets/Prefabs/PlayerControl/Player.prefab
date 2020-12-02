@@ -148,7 +148,7 @@ MonoBehaviour:
   _jumpForwardForce: 2
   _dashForce: 6
   _dashTime: 0.2
-  _animator: {fileID: 0}
+  _animator: {fileID: 8248258240713931394}
 --- !u!114 &6244511192572525074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePool: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 8248258240713931394}
 --- !u!114 &-604206701026434947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfaeec1ed09d2944a7e9d25729ecd86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _immunityTime: 0
 --- !u!114 &2630961901228339875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fa8703281ced541bacabbdc4dae3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _charPrefab: {fileID: 0}
 --- !u!1 &4621337314818217405
 GameObject:
   m_ObjectHideFlags: 0

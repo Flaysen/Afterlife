@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Stats;
+using Combat;
 
 namespace Resource
 {

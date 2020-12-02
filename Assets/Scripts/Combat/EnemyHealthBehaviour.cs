@@ -2,7 +2,7 @@
 using Stats;
 using Resource;
 using System;
-using AfterlifeProject.Assets.Scripts.Core;
+using Core;
 
 namespace Combat
 {
@@ -12,14 +12,11 @@ namespace Combat
     {
         [SerializeField] private GameObject _deathParticles;
         [SerializeField] private DamageHighlight _damageHighlight;
-        private StatsBehaviour _stats;
-
         public static event Action<float> OnDamageTaken;
-
         public static event Action<EnemyHealthBehaviour> OnEnemyDeath;
-
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
+        private StatsBehaviour _stats;
 
         private void Start()
         {
@@ -27,10 +24,8 @@ namespace Combat
             _damageHighlight = GetComponent<DamageHighlight>();
 
             MaxHealth = _stats.GetStatValue(StatType.Health);
-
             CurrentHealth = MaxHealth;
         }
-
         public void TakeDamage(float damage)
         {
             CurrentHealth = (CurrentHealth - damage > 0) ?
@@ -44,17 +39,17 @@ namespace Combat
                 OnEnemyDeath?.Invoke(this);
 
                 Destroy(gameObject);
-                GameObject deathParticles = Instantiate(_deathParticles, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                GameObject deathParticles = Instantiate(_deathParticles,
+                    transform.position + new Vector3(0, 0.5f, 0),
+                    Quaternion.identity);
                 deathParticles.GetComponent<DestroyAfterTime>().StartTimer(0.5f);
             }
         }
-
         public void Heal(float healValue)
         {
             CurrentHealth = (CurrentHealth + healValue < MaxHealth) ?
                 CurrentHealth + healValue : MaxHealth; 
         }
     }
-
 }
 
