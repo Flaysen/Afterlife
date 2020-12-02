@@ -7,7 +7,7 @@ using System;
 
 namespace Combat
 {
-    [RequireComponent(typeof(IAttackHandler), (typeof(StatsBehaviour)), (typeof(IDamagable)))]
+    [RequireComponent(typeof(StatsBehaviour), typeof(IDamagable))]
     public class AttackHandler : MonoBehaviour
     {  
         [SerializeField] private ProjectilePool _projectilePool;
@@ -26,6 +26,7 @@ namespace Combat
             _avoidTarget = GetComponent<IDamagable>();
             _attackInvoker.OnAttackTrigger += HandleAttack;
             _attackInvoker.OnAttackCancel += AttackCancel;
+            PlayerHealthBehaviour.OnPlayerDeath += () => _nextAttackTime = float.PositiveInfinity;
 
             if(!_projectilePool) _projectilePool =
                 GameObject.FindGameObjectWithTag("EnemyProjectilesPool").GetComponent<ProjectilePool>();

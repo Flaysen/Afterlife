@@ -9,11 +9,13 @@ namespace Resource
     [RequireComponent(typeof(DamageHighlight))]
     public class PlayerHealthBehaviour : MonoBehaviour, IDamagable, IHealable
     {
+        public static event Action OnPlayerDeath;
         [SerializeField] private float _immunityTime;
         private StatsBehaviour _stats;
         private DamageHighlight _damageHighlight;
         private float _actualTime;
         public event Action OnHealthChanged;
+   
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
         private void Start()
@@ -33,7 +35,10 @@ namespace Resource
                 _damageHighlight.HighLight();
                 _actualTime = Time.time;
 
-                if (CurrentHealth <= 0) Destroy(gameObject);
+                if (CurrentHealth <= 0)
+                {
+                    OnPlayerDeath?.Invoke();
+                }
             }          
         }
         public void Heal(float healValue)

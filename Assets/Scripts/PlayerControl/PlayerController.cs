@@ -1,4 +1,5 @@
 ﻿using Core;
+using Resource;
 using Stats;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace PlayerControl
         private StatsBehaviour _statsBehaviour;
         private InputHandler _input;
         private CharacterController _characterController;
+
         public Vector3 PointToLook => _pointToLook;
         public bool IsControlDisabled { get; set; }
 
@@ -37,7 +39,12 @@ namespace PlayerControl
             _characterController = GetComponent<CharacterController>();
 
             _statsBehaviour = GetComponent<StatsBehaviour>();
+
+            IsControlDisabled = false;
+
+            PlayerHealthBehaviour.OnPlayerDeath += DisableController;
         }
+
         private void Update()
         {
             if (Time.time > _recaptureControl)
@@ -118,6 +125,16 @@ namespace PlayerControl
         {
             Bounds bounds = _characterController.bounds;
             return Physics.Raycast(bounds.center, Vector3.down, bounds.extents.y + .1f);
+        }
+
+        private void DisableController()
+        {
+            enabled = false;
+        }
+
+        private void OnDisable()
+        {
+            PlayerHealthBehaviour.OnPlayerDeath -= DisableController;
         }
     }
 }
