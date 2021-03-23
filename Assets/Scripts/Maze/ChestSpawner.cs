@@ -18,7 +18,6 @@ namespace Maze
         }
         public void SpawnChest(Transform spwanTransform)
         { 
-            Debug.Log("Chest");
             Instantiate(_chestPrefab, spwanTransform.position, Quaternion.identity, transform);
         }  
     }

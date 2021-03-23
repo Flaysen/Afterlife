@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfaeec1ed09d2944a7e9d25729ecd86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathParticles: {fileID: 7699779432256929902, guid: ff9bf378160f68747ad5db04715cd0bf,
+    type: 3}
   _immunityTime: 0
 --- !u!114 &2630961901228339875
 MonoBehaviour:

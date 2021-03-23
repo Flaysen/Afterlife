@@ -21,6 +21,8 @@ namespace Enemies
         {       
             _enemyController.Agent.speed = _statBehaviour.GetStatValue(StatType.Speed);
             _enemyController.Agent.stoppingDistance = _statBehaviour.GetStatValue(StatType.AttackRange); 
+            _enemyController.Animator.SetFloat("Speed", 1.0f);
+            _enemyController.Animator.SetBool("isAttacking", false);
 
             if(!_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.Awareness)))
             {
@@ -29,6 +31,7 @@ namespace Enemies
 
             if(_enemyController.CheckDistance(_statBehaviour.GetStatValue(StatType.AttackRange)))
             {
+                _enemyController.Animator.SetFloat("Speed", 0.0f);
                 return typeof(CombatState);
             }
 

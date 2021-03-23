@@ -67,10 +67,9 @@ MonoBehaviour:
     type: 3}
   _obstacleRoomsUD:
   - {fileID: 6489229838416751789, guid: 4e3158c643bb4f041a4a01306e02934b, type: 3}
-  - {fileID: 3049140822358909585, guid: f4ac7df14891f0b41a27d07f1a88decc, type: 3}
+  - {fileID: 6489229838416751789, guid: 4e3158c643bb4f041a4a01306e02934b, type: 3}
   - {fileID: 1273983099238057906, guid: dec223c5d1af83b40ad7ce10fa64d978, type: 3}
   _obstacleRoomsLR:
   - {fileID: 8445443541203905879, guid: 3d12cdd1257affa478e179a8573069ea, type: 3}
-  - {fileID: 2416468774939700847, guid: 08a9a4b3654c5184eb5ab63e09b26b2e, type: 3}
   _exitRoom: {fileID: 9141320371397906633, guid: 4f32d002e3007634280b0dbab80f34b6,
     type: 3}

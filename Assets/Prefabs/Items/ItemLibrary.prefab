@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipment:
-  - {fileID: 8599325742310612267, guid: 22ba33e0cda11f040bfad16b169758ac, type: 3}
-  amplifiers:
-  - {fileID: 8599325742310612267, guid: 22ba33e0cda11f040bfad16b169758ac, type: 3}
+  - {fileID: 558912975197038565, guid: 30e8b8738b521ce40bb4b67879a7e2d8, type: 3}
+  - {fileID: 6794504530726893549, guid: f050a471cb571a246b90d886d1795c7f, type: 3}
+  - {fileID: 3478060928502608020, guid: cd4aa001f5b933a419f11c0add7279e9, type: 3}
+  - {fileID: 4109314146720568494, guid: 4e56f2f7974d4944a8f5cc1679c8f9fc, type: 3}
+  - {fileID: 3280537446805115392, guid: 20137b9f4d51c6c4dac68ed852272530, type: 3}
+  - {fileID: 8554296854541926722, guid: abdca9825b21697469b7e44e51112644, type: 3}
   consumables:
-  - {fileID: 8599325742310612267, guid: 22ba33e0cda11f040bfad16b169758ac, type: 3}
-  scrolls:
-  - {fileID: 8599325742310612267, guid: 22ba33e0cda11f040bfad16b169758ac, type: 3}
+  - {fileID: 7934711425466948914, guid: 34db7c2d99a5c9342b4e6e440500556b, type: 3}

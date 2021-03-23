@@ -27,13 +27,12 @@ public class CombatState : BaseState
 
         if (CanAttack())
         {
-            Attack();
-            _enemyController.Animator.SetFloat("Speed", 0);   
+            Attack();   
+            _enemyController.Animator.SetBool("isAttacking", true);
             _side = ChangeSide();
         }
         else
         {
-            _enemyController.Animator.SetFloat("Speed", 1);
             SideStep(_side);
         } 
 
@@ -47,6 +46,7 @@ public class CombatState : BaseState
 
     private bool CanAttack()
     {
+        Debug.Log(Time.time > _nextAttackTime);
         return (Time.time > _nextAttackTime) ? true : false;    
     }
     private void TurnToFacePlayer()

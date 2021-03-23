@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 8
   _periodsCount: 8
-  _particles: {fileID: 960945726580546702, guid: bc9ab691bc7fdd0409098a613b5b769a,
+  _particles: {fileID: 3619028977260716089, guid: 7fdadc6e657dc7e4582a710659d1923a,
     type: 3}
-  _damage: 10
+  _damage: 5

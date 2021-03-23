@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e6b29738611f2e43b24628b0be1ce04, type: 3}
+  m_Name: AncientChapter
+  m_EditorClassIdentifier: 
+  _name: Ancient Chapter
+  _decription: Homing projectiles + range up
+  _image: {fileID: 0}
+  Type: 0
+  _statModifiers:
+  - _statType: {fileID: 11400000, guid: cd4d386ae9a5e3545a528450ddac4b82, type: 2}
+    _statModType: 0
+    _value: 2
+  _projectilModifiers:
+  - {fileID: 11400000, guid: 75e249cc7d3c8e94a847353b7cff13b5, type: 2}

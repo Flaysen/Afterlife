@@ -1,4 +1,5 @@
-﻿using Combat;
+﻿using Afterlife.Assets.WorldGeneration.Scripts;
+using Combat;
 using UnityEngine;
 
 namespace Maze
@@ -14,13 +15,15 @@ namespace Maze
         }
         private void SpawnMonsters(RoomController roomController)
         {
-            EnemyHealthBehaviour enemyToSpawn = Instantiate(
-                _enemiesPrefabs[Random.Range(0, _enemiesPrefabs.Length)],
-                transform.position,
-                Quaternion.identity);
-                        
+            if(roomController.RoomType == RoomType.COMMON)
+            {
+                EnemyHealthBehaviour enemyToSpawn = Instantiate(
+                                _enemiesPrefabs[Random.Range(0, _enemiesPrefabs.Length)],
+                                transform.position,
+                                Quaternion.identity);                    
             roomController.Enemies.Add(enemyToSpawn);  
             _roomController.OnRoomEntered -= SpawnMonsters;
+            }          
         }
     }
 }

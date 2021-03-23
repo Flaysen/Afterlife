@@ -61,12 +61,11 @@ namespace Maze
         }
         public void RoomEntered(Collider collider)
         {
-            Debug.Log("Enter");
             PlayerController player = collider.GetComponent<PlayerController>();
             if(player)
             {
                 _isClosed = true;
-                if(RoomType!= RoomType.ENTRY) OnRoomEntered?.Invoke(this);       
+                OnRoomEntered?.Invoke(this);       
             }
         }      
     }

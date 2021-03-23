@@ -21,12 +21,7 @@ public class ItemLibrary : MonoBehaviour
     }
 
     public List<Item> equipment = new List<Item>();
-
-    public List<Item> amplifiers = new List<Item>();
-
     public List<Item> consumables = new List<Item>();
-
-    public List<Item> scrolls = new List<Item>();
 
     private void Awake()
     {

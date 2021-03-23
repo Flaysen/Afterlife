@@ -26,6 +26,8 @@ namespace Projectiles
 
         private Rigidbody _rigidbody;
 
+        private TrailRenderer _trail;
+
         private TriggerOverlap _triggerOverlap;
         private CollisionOverlap _collisionOverlap;
 
@@ -46,6 +48,8 @@ namespace Projectiles
             _initialScale = transform.localScale;
 
             _rigidbody = GetComponent<Rigidbody>();
+
+            _trail = GetComponent<TrailRenderer>();
 
             _triggerOverlap = GetComponent<TriggerOverlap>();
 
@@ -115,7 +119,7 @@ namespace Projectiles
         {
             yield return new WaitForSeconds(time);
 
-            gameObject.SetActive(false);
+            RemoveProjectile();
 
             StopAllCoroutines();
         }
@@ -134,7 +138,7 @@ namespace Projectiles
     
                 SpawnParticles();
     
-                gameObject.SetActive(false);        
+                RemoveProjectile();        
             }
         }
 
@@ -144,7 +148,7 @@ namespace Projectiles
             if(damagable == null  && collision.gameObject.layer != gameObject.layer)
             {
                 SpawnParticles();
-                gameObject.SetActive(false); 
+                RemoveProjectile();
             }
         }
 
@@ -162,6 +166,12 @@ namespace Projectiles
                 modifier.ProcessDestroyProjectileBehaviour(this);
             }
             _transform.localScale = _initialScale;
+        }
+
+        private void RemoveProjectile()
+        {   
+            _trail.Clear();
+            gameObject.SetActive(false); 
         }
     }
 }

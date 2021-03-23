@@ -2,6 +2,7 @@
 using UnityEngine;
 using Stats;
 using Combat;
+using Core;
 
 namespace Resource
 {
@@ -10,6 +11,8 @@ namespace Resource
     public class PlayerHealthBehaviour : MonoBehaviour, IDamagable, IHealable
     {
         public static event Action OnPlayerDeath;
+
+        [SerializeField] private GameObject _deathParticles;
         [SerializeField] private float _immunityTime;
         private StatsBehaviour _stats;
         private DamageHighlight _damageHighlight;
@@ -37,6 +40,10 @@ namespace Resource
 
                 if (CurrentHealth <= 0)
                 {
+                    GameObject deathParticles = Instantiate(_deathParticles,
+                    transform.position + new Vector3(0, 0.5f, 0),
+                    Quaternion.identity);
+                    deathParticles.GetComponent<DestroyAfterTime>().StartTimer(0.5f);
                     OnPlayerDeath?.Invoke();
                 }
             }          

@@ -284,6 +284,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 6732825481330907080, guid: 7fdadc6e657dc7e4582a710659d1923a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732825481330907080, guid: 7fdadc6e657dc7e4582a710659d1923a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732825481330907080, guid: 7fdadc6e657dc7e4582a710659d1923a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732825481330907080, guid: 7fdadc6e657dc7e4582a710659d1923a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fdadc6e657dc7e4582a710659d1923a, type: 3}
 --- !u!4 &209497722006508929 stripped

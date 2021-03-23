@@ -12,7 +12,7 @@ namespace PlayerControl
         [SerializeField] private float _jumpUpForce = 4.0f;
         [SerializeField] private float _jumpForwardForce = 2.0f;
         [SerializeField] private float _dashForce = 6.0f;
-        [SerializeField] private float _dashTime = 0.2f;
+        [SerializeField] private float _dashTime;
         [SerializeField] private Animator _animator;
 
         private Vector3 _moveVelocity;

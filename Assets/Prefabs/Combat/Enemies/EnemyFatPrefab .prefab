@@ -763,8 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseStats: {fileID: 11400000, guid: 5b7bf1b1a6381b84eb691ab44bcadf62, type: 2}
-  ProjectileModifiers:
-  - {fileID: 11400000, guid: 735e6e4553e57b94cb1f009e2968ca21, type: 2}
+  ProjectileModifiers: []
 --- !u!114 &6355891879778868264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,8 +776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ed201f79f80847baf6961e801f5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathParticles: {fileID: 154900285457883937, guid: 5c13e8bacf94d2147ad2d9a216430156,
+  _deathParticles: {fileID: 7699779432256929902, guid: ff9bf378160f68747ad5db04715cd0bf,
     type: 3}
+  _damageHighlight: {fileID: 0}
 --- !u!114 &6355891879778868267
 MonoBehaviour:
   m_ObjectHideFlags: 0

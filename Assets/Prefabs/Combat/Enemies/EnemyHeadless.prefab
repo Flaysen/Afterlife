@@ -285,7 +285,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _deathParticles
       value: 
-      objectReference: {fileID: 154900285457883937, guid: 5c13e8bacf94d2147ad2d9a216430156,
+      objectReference: {fileID: 7699779432256929902, guid: ff9bf378160f68747ad5db04715cd0bf,
         type: 3}
     - target: {fileID: 7675976025833636628, guid: 3c5a3e80d54a2ab46bd7507205578239,
         type: 3}

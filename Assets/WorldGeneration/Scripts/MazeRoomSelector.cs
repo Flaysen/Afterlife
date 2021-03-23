@@ -60,8 +60,8 @@ namespace LevelGeneration
                         _roomL;
             if (RoomType == RoomType.EXIT) roomToInstantiate = _exitRoom;
 
+            roomToInstantiate = Instantiate(roomToInstantiate, transform.position, transform.rotation, transform);
             roomToInstantiate.GetComponent<RoomController>().RoomType = RoomType;
-            Instantiate(roomToInstantiate, transform.position, transform.rotation, transform);
         }
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   - _statType: {fileID: 11400000, guid: da47ebc0564cc054192a0b5ee427da4b, type: 2}
     _value: 100
   - _statType: {fileID: 11400000, guid: 3cf6733889e230b4bac8b7cd224f0e0c, type: 2}
-    _value: 10
+    _value: 1
   - _statType: {fileID: 11400000, guid: cd4d386ae9a5e3545a528450ddac4b82, type: 2}
     _value: 0
   - _statType: {fileID: 11400000, guid: 817255a54f2ef814587632cb38c32a96, type: 2}

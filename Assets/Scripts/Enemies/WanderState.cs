@@ -20,12 +20,12 @@ namespace Enemies
         }
         public override Type StateUpdate()
         {   
-            _enemyController.Agent.speed = _statsBehaviour.GetStatValue(StatType.Speed) / 3.0f;  
+            _enemyController.Agent.speed = _statsBehaviour.GetStatValue(StatType.Speed) / 2.0f; 
+             _enemyController.Animator.SetFloat("Speed", 0.5f); 
 
             if(_transform.position == _nextPosition || _nextPosition == Vector3.zero)
             {        
                 _nextPosition = RandomNavmeshLocation(10.0f);     
-                Debug.Log(_nextPosition); 
             }
 
             _enemyController.Agent.SetDestination(_nextPosition);

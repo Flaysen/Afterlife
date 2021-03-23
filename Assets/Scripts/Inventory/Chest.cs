@@ -122,7 +122,6 @@ public class Chest : MonoBehaviour, IInteractable
                (RandomPointInBounds(spawnArea.bounds), false));
 
             drop.Add(itemLoot.RollLoot());
-            //itemSpawners[i].GetComponent<Light>().color = drop[i].GetRarityHaloColor();
         }
 
         chestState = ChestState.isOpening;

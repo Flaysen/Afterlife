@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6b29738611f2e43b24628b0be1ce04, type: 3}
   m_Name: Hourglass
   m_EditorClassIdentifier: 
-  _name: Item name
-  _decription: Description
+  _name: Hourglass
+  _decription: 'Slowing enemies projectiles '
   _image: {fileID: 0}
   Type: 0
   _statModifiers: []
-  _projectilModifiers: []
+  _projectilModifiers:
+  - {fileID: 11400000, guid: 1f1bd687f89f4144593e38e2e3d7c20a, type: 2}

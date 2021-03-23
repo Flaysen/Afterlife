@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Afterlife.Assets.WorldGeneration.Scripts;
+using Core;
+using UnityEngine;
 
 namespace Maze 
 {
     [RequireComponent(typeof(Collider))]
     public class Gate : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem _gateParticles;
         private GameObject _door;
         private Collider _collider;
         private RoomController _roomController;
@@ -21,21 +24,27 @@ namespace Maze
             _door.gameObject.SetActive(false);
             _roomController.OnRoomEntered += CloseDoor;
             _roomController.OnRoomCleared += DisableDoors;
+            _gateParticles.enableEmission = false;
         }
         public void Initialize(RoomController roomController)
         {
             _roomController = roomController;
         }
         private void DisableDoors(RoomController roomController)
-        {
+        {                    
             _collider.enabled = false;
             _door.gameObject.SetActive(false);
-            _roomController.OnRoomEntered -= CloseDoor;
+            _gateParticles.loop = false;
+            _roomController.OnRoomEntered -= CloseDoor;                   
         }
         private void CloseDoor(RoomController roomController)
-        {                     
-            _collider.enabled = true;
-            _door.gameObject.SetActive(true);                
+        {            
+            if(roomController.RoomType == RoomType.COMMON)  
+            {
+                _collider.enabled = true;
+                _gateParticles.enableEmission = true;
+                _door.gameObject.SetActive(true);   
+            }                               
         }
     }
 }

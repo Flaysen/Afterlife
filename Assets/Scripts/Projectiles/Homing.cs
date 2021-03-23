@@ -1,5 +1,6 @@
 using UnityEngine;
 using Resource;
+using Maze;
 
 namespace Projectiles
 {
@@ -31,7 +32,9 @@ namespace Projectiles
             foreach(Collider collider in colliders)
             {
                 IDamagable damagable = collider.GetComponent<IDamagable>();
-                if(damagable != null &&!(damagable.GetType().IsAssignableFrom(projectile.TargetToAvoid.GetType())))          
+                
+                if(damagable != null && collider.GetComponent<Destroyable>() == null
+                    &&! (damagable.GetType().IsAssignableFrom(projectile.TargetToAvoid.GetType())))          
                 {   
                     projectile.Target = collider.transform;                                           
                     break;

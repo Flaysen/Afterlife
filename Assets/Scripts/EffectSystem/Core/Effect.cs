@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
 namespace Effects 
 {
@@ -21,7 +22,7 @@ namespace Effects
         {
             GameObject particles = Instantiate(_particles, target.position, Quaternion.identity);
             particles.transform.parent = target;
-            Destroy(particles.gameObject, _duration);
+            particles.GetComponent<DestroyAfterTime>().StartTimer(_duration);
         }
     }
 }

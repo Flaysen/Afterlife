@@ -10,7 +10,8 @@ public class Minimap : MonoBehaviour
 {
     Dictionary<RoomController, GameObject> _roomsDictionary = new Dictionary<RoomController, GameObject>();
     [SerializeField] private GameObject _roomImageSlot;
-    [SerializeField] private Color _roomColor;
+    [SerializeField] private Color _commonRoomColor;
+    [SerializeField] private Color _exitRoomColor;
     [SerializeField] private float _mapScaling;
 
     private MazeGenerator _mazeGenerator;
@@ -54,17 +55,17 @@ public class Minimap : MonoBehaviour
                 newPosition = new Vector2(kvp.Key.transform.position.x, kvp.Key.transform.position.z) * _mapScaling;
                 newRoomSlot = kvp.Value; 
 
-                kvp.Value.transform.GetChild(0).GetComponent<Image>().color = _roomColor;
+                kvp.Value.transform.GetChild(0).GetComponent<Image>().color = _commonRoomColor;
             }
 
-            // if(kvp.Key.RoomType == RoomType.EXIT)
-            // {
-            //     kvp.Value.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
-            // }
+            if(kvp.Key.RoomType == RoomType.EXIT)
+            {
+                 kvp.Value.transform.GetChild(0).GetComponent<Image>().color = _exitRoomColor;
+            }
         }
         if(_lastRoomSlot)
         {
-            _lastRoomSlot.transform.GetChild(0).GetComponent<Image>().color = _roomColor * 2;
+            _lastRoomSlot.transform.GetChild(0).GetComponent<Image>().color = _commonRoomColor * 2;
         }
  
         MoveMap(roomController, newPosition);

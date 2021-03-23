@@ -1,6 +1,7 @@
 ﻿using Core;
 using GameManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Maze
 {
@@ -28,7 +29,8 @@ namespace Maze
         {
             if(collider.CompareTag("Player"))
             {
-                _levelManager.NextLevel();
+                //_levelManager.NextLevel();
+                SceneManager.LoadScene(0);
             }
         }
     }

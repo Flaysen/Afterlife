@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Afterlife.Assets.WorldGeneration.Scripts;
+using Maze;
+using UnityEngine;
 
 public class RoomInteriorGenerator : MonoBehaviour
 {
@@ -7,11 +9,21 @@ public class RoomInteriorGenerator : MonoBehaviour
     [SerializeField] private ObjectFromPattern[] _objectFromPattern;
     [SerializeField] private Color32 _wallsH;
     [SerializeField] private Color32 _wallsV;
+    private RoomController _roomController;
+
+    private void Awake()
+    {
+        _roomController = GetComponentInParent<RoomController>();
+    }
 
     private void Start()
     {
         _pattern = _patterns[UnityEngine.Random.Range(0, _patterns.Length)];
-        GenerateRoomTiles(RandomPatternOrientation(_pattern));
+        
+        if(_roomController.RoomType == RoomType.COMMON)
+        {
+            GenerateRoomTiles(RandomPatternOrientation(_pattern));
+        } 
     }
     private void GenerateRoomTiles(Texture2D pattern)
     {

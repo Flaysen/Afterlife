@@ -42,7 +42,6 @@ public class ItemLoot : MonoBehaviour
 
     public void RollType()
     {
-        Debug.Log("Roll Type");
         int typeWeight =+ consumableDropChance + equipmentDropChance;
             
         int randomValue = Random.Range(0, typeWeight);
@@ -60,12 +59,10 @@ public class ItemLoot : MonoBehaviour
        
     public Item RollLoot()
     {
-        Debug.Log("Roll loot");
         int rollDropChance = Random.Range(1, 101);
 
         if(rollDropChance > dropChance)
         {
-            Debug.Log("No Drop");
             return null;
         }
 
@@ -76,6 +73,6 @@ public class ItemLoot : MonoBehaviour
             int randomValue = Random.Range(0, itemTypeToDrop.Count);
             return itemTypeToDrop[randomValue];
         }
-        else Debug.Log("!!"); return null;  
+        else return null;  
     }
 }
